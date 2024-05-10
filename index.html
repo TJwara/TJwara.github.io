@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TJWARA</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body onload="para()">
+    <div id="header">
+        <div class="container">
+            <nav class="side-menu">
+                <p class="logo"><span>T</span>JWARA</p>
+                <ul id="sidemenu">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#about-me">About</a></li>
+                    <li><a href="#my-services">Services</a></li>
+                    <li><a href="#my-portfolio">Portfolio</a></li>
+                    <li><a href="#contact-me">Contact</a></li>
+                    <div class="menu-icon"><img src="Images/Close.png"></div>
+                </ul>
+                <div class="menu-icon" onclick="openNav();"><img src="Images/Menu.png"></div>
+            </nav>
+            <button onclick="openNav();" id="goToHome" title="Open Menu"><img src="Images/Menu.png"></button>
+            <div id="sideNavBar" class="sidenav">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav();">&times;</a>
+                <div class="side-logo">
+                    <p class="logo"><span>T</span>JWARA</p>
+                </div>
+                <a href="#" onclick="closeNav()">Home</a>
+                <a href="#about-me" onclick="closeNav();">About</a>
+                <a href="#my-services" onclick="closeNav();">Services</a>
+                <a href="#my-portfolio" onclick="closeNav();">Portfolio</a>
+                <a href="#contact-me" onclick="closeNav();">Contact</a>
+            </div>
+            <div class="row">
+                <div class="header-left">
+                    <img src="Images/Header.png">
+                </div>
+                <div class="header-right">
+                    <div class="header-text">
+                        <h2 id="my-name">Thabiso Jwara</h2>
+                        <h1 id="show-one">Front-End<span> Developer</span></h1>
+                        <p id="show-three">I have a user focused mindset which enables me to develop innovative
+                            solutions
+                            that deliver meaningful experience and elevate your business.</p>
+                        <button id="show-four" class="button-fill" onclick="window.location.href='#about-me';">About
+                            Me</button>
+                        <marquee behavior="scroll" direction="left" scrollamount="10" style="width: 100%;">
+                            <h3 id="show-five">UI/UX <span class="show-six">Design</span>&ensp;&ensp;&ensp;&ensp;WEB
+                                <span class="show-six">Design</span>&ensp;&ensp;&ensp;&ensp; WEB <span
+                                    class="show-six">Development</span></h3>
+                        </marquee>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-------------- About Me -------------->
+    <div id="about"><span id="about-me" />
+        <div class="time-line reveal2">
+            <ul>
+                <li>
+                    <center><img src="Images/Start.png"><br>
+                        <p>June 2023</p>
+                    </center>
+                </li>
+                <li>
+                    <center>
+                        <div class="middle"></div>
+                </li>
+                <li>
+                    <center>
+                        <div class="middle"></div>
+                    </center>
+                </li>
+                <li>
+                    <center>
+                        <div class="middle"></div>
+                    </center>
+                </li>
+                <li>
+                    <center><img class="present" src="Images/Developer.png"><br>
+                        <p>Present</p>
+                    </center>
+                </li>
+            </ul>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="about-col-1">
+                    <h3>ABOUT ME</h3>
+                    <p class="stry">In June 2023 I started my journey in Front-End Development by taking online courses
+                        and
+                        watching YouTube tutorials. Since then, I have worked on a few Training Projects, Personal
+                        Projects and 1 Commercial Project.
+                        <br><br>
+                        As a Junior Front-End Developer, I am passionate about creating visually appealing and
+                        user friendly websites. With a strong foundation in HTML, CSS, and JavaScript, I am
+                        constantly seeking opportunities to expand my knowledge and skills in web development.
+                        I have experience in responsive design and have a keen eye for detail, ensuring that every
+                        element of a website is pixel perfect.
+                    </p>
+                    <div class="tab-titles">
+                        <p class="tab-links active-link" onclick="opentab('education')">EDUCATION</p>
+                        <p class="tab-links" onclick="opentab('skills')">SKILLS</p>
+                        <p class="tab-links" onclick="opentab('experience')">EXPERIENCE</p>
+                    </div>
+                    <div id="education" class="tab-contents move-up active-tab">
+                        <ul>
+                            <h4>UNIVERSITY OF JOHANNESBURG</h4>
+                            <li><span class="description">BSc Mathematical Sciences with specialisation in Applied Mathematics and Mathematics</span><br><span class="completion">February 2015 - November 2018</span>
+                            </li>
+                            <h4>COURSERA</h4>
+                            <li><span class="description">AWS Cloud Solutions Architect Professional Certificate</span><br><span class="completion">October 2023 - December 2023</span>
+                            </li>
+                            <h4>COURSERA</h4>
+                            <li><span class="description">IBM Front-End Developer Proffesional Certificate</span><br><span class="completion">June 2023 - March 2024</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div id="skills" class="tab-contents move-up ">
+                        <h4>UI/UX Design</h4>
+                        <ul class="the-skills">
+                            <li>
+                                <div>
+                                    <center><img src="Images/Figma.png">
+                                        <p>Figma</p>
+                                    </center>
+                                </div>
+                            </li>
+                        </ul>
+                        <h4>Web Development</h4>
+                        <ul class="the-skills">
+                            <li>
+                                <div>
+                                    <center><img src="Images/HTML.png">
+                                        <p>HTML</p>
+                                    </center>
+                                </div>
+                            </li>
+                            <li>
+                                <div>
+                                    <center><img src="Images/CSS.png">
+                                        <p>CSS</p>
+                                    </center>
+                                </div>
+                            </li>
+                            <li>
+                                <div>
+                                    <center><img src="Images/JavaScript.png">
+                                        <p>JavaScript</p>
+                                    </center>
+                                </div>
+                            </li>
+                            <li>
+                                <div>
+                                    <center><img src="Images/React.png">
+                                        <p>React</p>
+                                    </center>
+                                </div>
+                            </li>
+                            <li>
+                                <div>
+                                    <center><img src="Images/PHP.png">
+                                        <p>PHP</p>
+                                    </center>
+                                </div>
+                            </li>
+                            <li>
+                                <div>
+                                    <center><img src="Images/Python.png">
+                                        <p>Python</p>
+                                    </center>
+                                </div>
+                            </li>
+                        </ul>
+                        <h4>Version Control</h4>
+                        <ul class="the-skills">
+                            <li>
+                                <div>
+                                    <center><img src="Images/GitHub.png">
+                                        <p>GitHub</p>
+                                    </center>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div id="experience" class="tab-contents move-up ">
+                        <h4>UI/UX Design</h4>
+                        <ul>
+                            <li><span class="description">Front-End Developer Training</span><br><span
+                                    class="completion">June 2023 - March 2024</span><br><br>
+                                <span class="description">Freelance Web Developer</span><br><span
+                                    class="completion">June 2023 - Present</span>
+                            </li>
+                        </ul>
+                        <h4>Web Development</h4>
+                        <ul>
+                            <li><span class="description">Front-End Developer Training</span><br><span
+                                    class="completion">June 2023 - March 2024</span><br><br>
+                                <span class="description">Freelance Web Developer</span><br><span
+                                    class="completion">June 2023 - Present</span>
+                            </li>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="about-col-2">
+                    <img src="Images/bn.png">
+                </div>
+            </div>
+        </div>
+    </div>
+    <center>
+        <div class="heading-icon-goal">
+            <img src="Images/Goal.png">
+        </div>
+    </center>
+    <p class="my-goal reveal desktop"> My goal is to contribute to innovative projects that<br> push the boundaries of Front-End Development<br> and enhance the overall user experience.</p>
+    <p class="my-mobile-goal reveal mobile"> My goal is to contribute to innovative projects that push the boundaries of Front-End Development and enhance the overall user experience.
+        <center><span id="my-services" />
+            <div class="service-section-heading">
+                <div class="heading-icon">
+                    <img src="Images/Services.png">
+                </div>
+                <h3 class="heading-services">MY SERVICES</h3>
+            </div>
+        </center>
+    <div class="my-services-section">
+        <div class="contents">
+            <div id="services">
+                <div class="services-list reveal">
+                    <div>
+                        <img src="Images/Branding.png">
+                        <h2>Graphic Design</h2>
+                        <p>I create unique and eye-catching designs for logos and other products. </p>
+                        <button class="completed-projects" onclick="window.location.href='#my-portfolio';">Completed
+                            Projects</button>
+                    </div>
+					 <div>
+                        <img src="Images/Choose.png">
+                        <h2>UI/UX Design</h2>
+                        <p>I create user interfaces and user experiences for digital products.</p>
+                        <button class="completed-projects" onclick="window.location.href='#my-portfolio';">Completed
+                            Projects</button>
+                    </div>
+                    <div>
+                        <img src="Images/WebDesign.png">
+                        <h2>Web Design</h2>
+                        <p>I design websites that are visually appealing, intuitive, and easy to navigate.</p>
+                        <button class="completed-projects" onclick="window.location.href='#my-portfolio';">Completed
+                            Projects</button>
+                    </div>
+                    <div>
+                        <img src="Images/LaptopCoding.png">
+                        <h2>Web Development</h2>
+                        <p> I develop new website. From info pages to e-commerce sites.</p>
+                        <button class="completed-projects" onclick="window.location.href='#my-portfolio';">Completed
+                            Projects</button>
+                    </div>
+                </div>
+                <center>
+                    <div class="more-about-my-services">
+                        <span />
+                        <div id="my-portfolio" class="my-work-stats">
+                            <p><span>I work well independently and I believe I can thrive in a collaborative environment, where I can contribute my ideas and work alongside experienced developers.</span><br><br> With a strong work ethic and a dedication to continuous improvement, I am always excited to contribute to the success of any project I am a part of.</p>
+                        </div>
+                    </div>
+            </div>
+            </center>
+        </div>
+    </div>
+    <div style="min-height: 10em;"></div>
+    <div class="counters">
+        <div>
+            <div class="counter">
+                <h1><span data-count="6">0</span>+</h1>
+                <h3>Projects Completed</h3>
+            </div>
+            <div class="counter">
+                <h1><span data-count="100">0</span>+</h1>
+                <h3>Working Hours</h3>
+            </div>
+            <div class="counter">
+                <h1><span data-count="99">0</span>%</h1>
+                <h3>Success Rate</h3>
+            </div>
+            <div class="counter">
+                <h1><span data-count="1">0</span>+</h1>
+                <h3>Years Experience</h3>
+            </div>
+        </div>
+    </div>
+    <div id="portfolio">
+        <h3 class="heading-portfolio">MY PORTFOLIO</h3>
+		
+		<h4>Graphic Design</h4><br>
+         <center>
+		<div id="clients" >
+            <ul class="reveal">
+			<li><img style="width: auto; height: 110px;" src="Images/JS-Infinity-Media.png"></li>
+			    
+                <li><img src="Images/new-logo.png"></li>				
+                <li><img src="Images/Malindis.png"></li>	
+<li><img src="Images/Leera.png"></li>				
+						
+            </ul>
+			</div>
+        </center>
+		
+		<h4>Web Design and Development</h4><br>
+        <div class="work-list ">
+            <div class="work reveal2">
+                <img src="Images/Psalm67.png">
+                <div class="layer">
+                    <h3>Bookkeeping Firm</h3>
+                    <p>This is a website for a start-up company specializing in bookkeeping, created with HTML, CSS and JavaScript</p>
+                    <a href="https://psalm67.co.za/" target="_blank"><img src="Images/ExternalLink-1.png"></a>
+                </div>
+            </div>
+            <div class="work reveal2">
+                <img src="Images/Coursemaccon.png">
+                <div class="layer">
+                    <h3>Tech Company</h3>
+                    <p>This is a website for a start-up company specializing in Front-End Development, created with HTML, CSS and JavaScript</p>
+					<br>
+                    <h3 style="background: #ff7200; color: #000000; width: 100%; padding: 2vh 0; border-radius: 4px;" >Website Under Development, <br>Stay Tuned</h3>
+                </div>
+            </div>
+        </div>
+        <p class="work-portfolio reveal">I relentlessly work towards ensuring that every endeavor I embark upon leads to a golden outcome.</p>
+    </div>
+    <center>
+        <div class="contact-section-heading">
+            <div class="heading-icon">
+                <img src="Images/Phone.png">
+            </div>
+        </div>
+    </center>
+    <div id="contact">
+        <div class="contact">
+            <div id="contact-me" class="row">
+                <center>
+                    <div class="contact-left">
+                        <div class="contact-card">
+                            <h4 class="reveal">Contact Person</h4>
+                            <p class="reveal">Thabiso Jwara</p>
+                            <img class="reveal" src="Images/p1.jpg">
+                            <div class="contact-icons-container">
+                                <div class="contact-icons-container-left reveal">
+                                    <center>
+                                        <div><img src="Images/Smartphone.png"></div>
+                                    </center>
+                                    <p>+27 71 574 4940 </p>
+                                </div>
+                                <div class="contact-icons-container-right reveal">
+                                    <center><a href="mailto:info@psalm67.co.za">
+                                            <div><img src="Images/Email.png"></div>
+                                        </a></center>
+                                    <p>thabisojwara85@gmail.com </p>
+                                </div>
+                            </div>
+                            <div class="contact-icons-container longer">
+                                <div class="contact-icons-container-left">
+                                    <center>
+                                        <p>518 J Mbele Street, <br>John Dube Village, <br>Duduza, <br>1496</p>
+                                    </center>
+                                </div>
+                                <div class="contact-icons-container-right">
+                                    <div class="google-map">
+                                        <iframe
+                                            src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d3574.912214486154!2d28.42527643621374!3d-26.36170119049374!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sza!4v1712506931084!5m2!1sen!2sza"
+                                            allowfullscreen="" loading="lazy"
+                                            referrerpolicy="no-referrer-when-downgrade"></iframe>
+                                    </div>
+                                </div>
+                            </div>
+                            <center>
+                                <div class="location"><img src="Images/Location.png"></div>
+                            </center>
+                            <div class="contact-icons-container2 ">
+                               
+                                <div class="contact-icons-container-social reveal">
+                                    
+                                </div>
+								 <div class="contact-icons-container-social reveal">
+                                    <center><a href="https://www.linkedin.com/in/thabiso-jwara-859800151/"
+                                            target="_blank">
+                                            <div><img src="Images/LinkedIn.png"></div>
+                                        </a></center>
+                                    <p>LinkedIn</p>
+                                </div>
+                                <div class="contact-icons-container-social reveal">
+                                  
+                                </div>
+                            </div>
+                            <a href="Resume.pdf" target="_blank" download><button class="reveal">Resume</button></a>
+                        </div>
+                    </div>
+                </center>
+                <div class="contact-right">
+                    <div class="contact">
+                        <h2>Get in touch</h2>
+                        <form name="submit-to-google-sheet">
+                            <div class="input-box">
+                                <div class="input-field field">
+                                    <input type="text" placeholder="Full Name" name="Name" autocomplete="off" required>
+                                </div>
+                                <div class="input-field field">
+                                    <input type="text" placeholder="Phone Number" name="Phone" autocomplete="off"
+                                        required>
+                                </div>
+                            </div>
+                            <input type="email" placeholder="Email Address" name="Email" autocomplete="off" required>
+                            <textarea name="Message" rows="6" placeholder="Your Message" required></textarea>
+                            <button id="submit-button" class="submit" type="submit">Send</button>
+                            <button id="loading-button" class="buttonload"><i
+                                    class="fa fa-spinner fa-spin"></i></button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="desktop">
+        <div class="top-footer">
+            <div class="column1">
+                <p class="logo"><span>T</span>JWARA</p>
+                <p class="copyright">Copyright 2024 <a href="#">Thabiso Jwara</a> </p>
+                <p class="copyright">Designed & Developed by <a href="#">Thabiso Jwara</a> </p>
+                <p class="copyright">Icons by <a href="https://icons8.com/" target="_blank">Icons8</a></p>
+            </div>
+            <div class="column2">
+                <h4>Links</h4>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#about-me">About</a></li>
+                    <li><a href="#my-services">Services</a></li>
+                    <li><a href="#my-portfolio">Portfolio</a></li>
+                    <li><a href="#contact-me">Contact</a></li>
+                </ul>
+            </div>
+            <div class="column2">
+                <center>
+                    <h4>Contacts Details</h4>
+                    <ul>
+                        <li>
+                            <div class="icon"><img src="Images/Phone.png"></div> &ensp;+27 71 574 4940
+                        </li>
+                        <li>
+                            <div class="icon"><a href="mailto:info@psalm67.co.za"><img src="Images/Email.png"></a>
+                            </div>&ensp;thabisojwara85@gmail.com
+                        </li>
+                        <li>
+                            <div class="icon"><a href="https://www.linkedin.com/in/thabiso-jwara-859800151/"
+                                    target="_blank">
+                                    <img src="Images/LinkedIn.png"></a></div> &ensp;LinkedIn
+                        </li>
+                    </ul>
+                </center>
+            </div>
+        </div>
+        <div class="bottom-footer">
+        </div>
+    </footer>
+    <footer class="mobile">
+        <div class="top-footer">
+            <div class="column1">
+                <p class="logo"><span>T</span>JWARA</p>
+                <p class="copyright">Copyright 2024 <a href="#">Thabiso Jwara</a> </p>
+                <p class="copyright">Designed & Developed by <a href="#">Thabiso Jwara</a> </p>
+                <p class="copyright">Icons by <a href="https://icons8.com/" target="_blank">Icons8</a></p>
+            </div>
+            <div class="column2">
+                <h4>Links</h4>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#about-me">About</a></li>
+                    <li><a href="#my-services">Services</a></li>
+                    <li><a href="#my-portfolio">Portfolio</a></li>
+                    <li><a href="#contact-me">Contact</a></li>
+                    <li><a href="privacyPolicy.html" target="_blank">Privacy Policy</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="bottom-footer">
+            <div class="column3">
+                <h4>Contacts Details</h4>
+                <ul>
+                    <li>
+                        <div class="icon"><img src="Images/Phone.png"></div> &ensp;+27 71 574 4940
+                    </li>
+                    <li>
+                        <div class="icon"><a href="mailto:info@psalm67.co.za"><img src="Images/Email.png"></a> </div>
+                        &ensp;thabisojwara85@gmail.com
+                    </li>
+                    <li>
+                        <div class="icon"><a href="https://www.linkedin.com/in/thabiso-jwara-859800151/"
+                                target="_blank">
+                                <img src="Images/LinkedIn.png"></a></div> &ensp;LinkedIn
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+    <script>
+        function openNav() {
+            document.getElementById("sideNavBar").style.width = "300px";
+        }
+        function closeNav() {
+            document.getElementById("sideNavBar").style.width = "0";
+        }
+    </script>
+    <script>
+        let myMenuButton = document.getElementById("goToHome");
+        window.onscroll = function () {
+            scrollFunction()
+        };
+        function scrollFunction() {
+            if (document.body.scrollTop > 70 || document.documentElement.scrollTop > 70) {
+                myMenuButton.style.display = "block";
+            }
+            else {
+                myMenuButton.style.display = "none";
+            }
+        }
+    </script>
+    <script>
+        var sidemenu = document.getElementById("sidemenu");
+        function openmenu() {
+            sidemenu.style.right = "0";
+        }
+        function closemenu() {
+            sidemenu.style.right = "-200px";
+        }
+    </script>
+    <script>
+        var tablinks = document.getElementsByClassName("tab-links");
+        var tabcontents = document.getElementsByClassName("tab-contents");
+        function opentab(tabname) {
+            for (tablink of tablinks) {
+                tablink.classList.remove("active-link");
+            }
+            for (tabcontent of tabcontents) {
+                tabcontent.classList.remove("active-tab");
+            }
+            event.currentTarget.classList.add("active-link");
+            document.getElementById(tabname).classList.add("active-tab");
+        }
+    </script>
+    <script>
+        function para() {
+            document.getElementById("show-one").style.opacity = "1";
+            document.getElementById("show-one").style.transform = "translateY(0)";
+            document.getElementById("my-name").style.opacity = "1";
+            document.getElementById("show-three").style.opacity = "1";
+            document.getElementById("show-three").style.transform = "translateY(0)";
+            document.getElementById("show-four").style.opacity = "1";
+            document.getElementById("show-four").style.transform = "translateY(0)";
+            document.getElementById("show-five").style.color = "rgba(119, 136, 153, 0.3)";
+            document.getElementById("show-five").style.paddingLeft = "0";
+            document.getElementById("show-six").style.opacity = "1";
+        }
+    </script>
+    <script type="text/javascript">
+        window.addEventListener('scroll', reveal);
+        function reveal() {
+            var reveals = document.querySelectorAll('.reveal');
+            for (var i = 0; i < reveals.length; i++) {
+                var windowheight = window.innerHeight;
+                var revealtop = reveals[i].getBoundingClientRect().top;
+                var revealpoint = 50;
+                if (revealtop < windowheight - revealpoint) {
+                    reveals[i].classList.add('active');
+                } else {
+                    reveals[i].classList.remove('active');
+                }
+            }
+        }
+    </script>
+    <script type="text/javascript">
+        window.addEventListener('scroll', reveal2);
+        function reveal2() {
+            var reveals = document.querySelectorAll('.reveal2');
+            for (var i = 0; i < reveals.length; i++) {
+                var windowheight = window.innerHeight;
+                var revealtop = reveals[i].getBoundingClientRect().top;
+                var revealpoint = 100;
+                if (revealtop < windowheight - revealpoint) {
+                    reveals[i].classList.add('active2');
+                } else {
+                    reveals[i].classList.remove('active2');
+                }
+            }
+        }
+    </script>
+    <script>
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbxiQjSZvjpFDAIZRaBYWDPj_dz5gMdFPS3ht4YcnBVeae2DuVSebZP4AicmDu3dm2Oo/exec'
+        const form = document.forms['submit-to-google-sheet']
+        form.addEventListener('submit', e => {
+            document.getElementById("loading-button").style.display = "block";
+            document.getElementById("submit-button").style.display = "none";
+            e.preventDefault()
+            fetch(scriptURL, { method: 'POST', body: new FormData(form) })
+                .then(response => {
+                    Swal.fire({
+                        title: "Message Sent Successfully!",
+                        text: "Please expect a response within 24 hours.",
+                        icon: "success"
+                    });
+                    setTimeout(function () {
+                        document.getElementById("loading-button").style.display = "none";
+                        document.getElementById("submit-button").style.display = "block";
+                    }, 1000)
+                    form.reset()
+                }
+                )
+                .catch(error => console.error('Error!', error.message))
+        })
+    </script>
+    <script>
+        var sidemenu = document.getElementById("sidemenu");
+
+        function openmenu() {
+            sidemenu.style.right = "0";
+        }
+        function closemenu() {
+            sidemenu.style.right = "-300px";
+        }
+    </script>
+    <script>
+        const counters = document.querySelectorAll(".counters span");
+        const container = document.querySelector(".counters");
+        let activated = false;
+        window.addEventListener("scroll", () => {
+            if (
+                pageYOffset > container.offsetTop - container.offsetHeight - 250 && activated === false
+            ) {
+                counters.forEach(counter => {
+                    counter.innerText = 0;
+                    let count = 0;
+                    function updateCount() {
+                        const target = parseInt(counter.dataset.count);
+                        if (count < target) {
+                            count++;
+                            counter.innerText = count;
+                            setTimeout(updateCount, 10);
+                        } else {
+                            counter.innerText = target;
+                        }
+                    }
+                    updateCount();
+                    activated = true;
+                });
+            } else if (
+                pageYOffset < container.offsetTop - container.offsetHeight - 500 || pageYOffset === 0 && activated === true) {
+                counters.forEach(counter => {
+                    counter.innerText = 0;
+                });
+                activated = false;
+            }
+        });
+    </script>
+    <script>
+        let mybutton = document.getElementById("goToHome");
+        window.onscroll = function () {
+            scrollFunction()
+        };
+        function scrollFunction() {
+            if (document.body.scrollTop > 150 || document.documentElement.scrollTop > 150) {
+                mybutton.style.display = "block";
+            }
+            else {
+                mybutton.style.display = "none";
+            }
+        }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</body>
+
+</html>
