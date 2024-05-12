@@ -61,7 +61,7 @@
     </div>
     <!-------------- About Me -------------->
     <div id="about"><span id="about-me" />
-        <div class="time-line reveal2">
+        <div class="time-line reveal4">
             <ul>
                 <li>
                     <center><img src="Images/Start.png"><br>
@@ -588,6 +588,22 @@
                     reveals[i].classList.add('active2');
                 } else {
                     reveals[i].classList.remove('active2');
+                }
+            }
+        }
+    </script>
+	<script type="text/javascript">
+        window.addEventListener('scroll', reveal4);
+        function reveal4() {
+            var reveals = document.querySelectorAll('.reveal4');
+            for (var i = 0; i < reveals.length; i++) {
+                var windowheight = window.innerHeight;
+                var revealtop = reveals[i].getBoundingClientRect().top;
+                var revealpoint = 100;
+                if (revealtop < windowheight - revealpoint) {
+                    reveals[i].classList.add('active4');
+                } else {
+                    reveals[i].classList.remove('active4');
                 }
             }
         }
