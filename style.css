@@ -2864,6 +2864,17 @@ body, html {
     width: 100%;
     opacity: 1;
 }
+.reveal4 {
+    position: relative;
+    width: 50%;
+    opacity: 0;
+    transition: all 1s ease;
+}
+
+.reveal4.active4 {
+    width: 100%;
+    opacity: 1;
+}
 
 .contact-right .buttonload {
     background-color: #cc5500;
