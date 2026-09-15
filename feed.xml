@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+
+    <channel>
+
+        <title>Thabiso Jwara | Front-End Developer</title>
+
+        <link>https://tjwara.github.io/</link>
+
+        <description>
+            Thabiso Jwara is a Front-End Developer specialising in responsive websites, user-focused interfaces and modern web development.
+        </description>
+
+        <language>en-ZA</language>
+
+        <managingEditor>
+            Thabiso Jwara
+        </managingEditor>
+
+        <webMaster>
+            Thabiso Jwara
+        </webMaster>
+
+        <lastBuildDate>Tue, 15 Sep 2026 00:00:00 +0200</lastBuildDate>
+
+        <atom:link
+            href="https://tjwara.github.io/feed.xml"
+            rel="self"
+            type="application/rss+xml"
+            xmlns:atom="http://www.w3.org/2005/Atom"
+        />
+
+        <item>
+
+            <title>Thabiso Jwara | Front-End Developer</title>
+
+            <link>https://tjwara.github.io/</link>
+
+            <guid isPermaLink="true">
+                https://tjwara.github.io/
+            </guid>
+
+            <description>
+                Front-End Developer specialising in responsive websites, user-focused interfaces and modern web development.
+            </description>
+
+        </item>
+
+        <item>
+
+            <title>About Thabiso Jwara</title>
+
+            <link>https://tjwara.github.io/pages/about.html</link>
+
+            <guid isPermaLink="true">
+                https://tjwara.github.io/pages/about.html
+            </guid>
+
+            <description>
+                Learn more about Thabiso Jwara, a Front-End Developer focused on building responsive, user-focused websites and modern web experiences.
+            </description>
+
+        </item>
+
+        <item>
+
+            <title>Contact Thabiso Jwara</title>
+
+            <link>https://tjwara.github.io/pages/contact.html</link>
+
+            <guid isPermaLink="true">
+                https://tjwara.github.io/pages/contact.html
+            </guid>
+
+            <description>
+                Get in touch with Thabiso Jwara for front-end development, website design and modern web development projects.
+            </description>
+
+        </item>
+
+    </channel>
+
+</rss>
