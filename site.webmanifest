@@ -1,19 +1,26 @@
 {
-    "name": "Thabiso Jwara | Front-End Developer",
-    "short_name": "Thabiso Jwara",
-    "description": "Portfolio website of Thabiso Jwara, Front-End Developer specialising in responsive websites, user-focused interfaces and modern web development.",
-    "start_url": "/",
-    "scope": "/",
-    "display": "standalone",
-    "background_color": "#ffffff",
-    "theme_color": "#a9922c",
-    "lang": "en-ZA",
-    "dir": "ltr",
-    "icons": [
-        {
-            "src": "/images/favicon.ico.png",
-            "sizes": "192x192",
-            "type": "image/png"
-        }
-    ]
+  "name": "Thabiso Jwara | Front-End Developer",
+  "short_name": "Thabiso Jwara",
+  "description": "Portfolio website of Thabiso Jwara, Front-End Developer specialising in responsive websites, user-focused interfaces and modern web development.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#FFFFFF",
+  "theme_color": "#000000",
+  "lang": "en-ZA",
+  "dir": "ltr",
+  "icons": [
+    {
+      "src": "/images/favicon.ico.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/images/favicon.ico.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
 }
