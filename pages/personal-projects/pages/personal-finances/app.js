@@ -21,9 +21,18 @@ const CATEGORIES = [
 ];
 
 const KEYWORD_MAP = [
-  [["woolworths", "checkers", "pick n pay", "pnp", "shoprite", "spar"], "Groceries"],
-  [["uber", "bolt", "petrol", "fuel", "gautrain", "taxi", "parking"], "Transport"],
-  [["netflix", "showmax", "spotify", "dstv", "apple music", "prime video"], "Subscriptions"],
+  [
+    ["woolworths", "checkers", "pick n pay", "pnp", "shoprite", "spar"],
+    "Groceries",
+  ],
+  [
+    ["uber", "bolt", "petrol", "fuel", "gautrain", "taxi", "parking"],
+    "Transport",
+  ],
+  [
+    ["netflix", "showmax", "spotify", "dstv", "apple music", "prime video"],
+    "Subscriptions",
+  ],
   [
     [
       "eskom",
@@ -40,9 +49,42 @@ const KEYWORD_MAP = [
     "Utilities",
   ],
   [["rent", "bond", "levy"], "Housing"],
-  [["medical aid", "discovery", "momentum", "insurance", "outsurance", "santam"], "Insurance"],
-  [["restaurant", "takeaway", "mcdonald", "kfc", "nando", "coffee", "uber eats", "mr d"], "Dining"],
-  [["salary", "wage", "payment received", "freelance income", "bonus", "gift", "refund"], "Income"],
+  [
+    [
+      "medical aid",
+      "discovery",
+      "momentum",
+      "insurance",
+      "outsurance",
+      "santam",
+    ],
+    "Insurance",
+  ],
+  [
+    [
+      "restaurant",
+      "takeaway",
+      "mcdonald",
+      "kfc",
+      "nando",
+      "coffee",
+      "uber eats",
+      "mr d",
+    ],
+    "Dining",
+  ],
+  [
+    [
+      "salary",
+      "wage",
+      "payment received",
+      "freelance income",
+      "bonus",
+      "gift",
+      "refund",
+    ],
+    "Income",
+  ],
   [["takealot", "amazon", "clothing", "mall"], "Shopping"],
   [["pharmacy", "clicks", "dischem", "doctor", "dentist", "gym"], "Health"],
 ];
@@ -92,7 +134,10 @@ function loadState() {
     if (!raw) return seedSampleData(defaultState());
     const parsed = JSON.parse(raw);
     const merged = Object.assign(defaultState(), parsed);
-    merged.settings = Object.assign(defaultState().settings, parsed.settings || {});
+    merged.settings = Object.assign(
+      defaultState().settings,
+      parsed.settings || {},
+    );
     return merged;
   } catch (e) {
     console.error("Could not read saved data, starting fresh.", e);
@@ -320,7 +365,11 @@ function nextOccurrence(r, from) {
     );
     if (cand < start) {
       const m = start.getMonth() + 1;
-      cand = new Date(start.getFullYear(), m, Math.min(r.day, daysInMonth(start.getFullYear(), m)));
+      cand = new Date(
+        start.getFullYear(),
+        m,
+        Math.min(r.day, daysInMonth(start.getFullYear(), m)),
+      );
     }
     return cand;
   }
@@ -362,7 +411,8 @@ function occurrencesWithin(r, days) {
 
 function currentBalance() {
   let bal = state.startingBalance || 0;
-  for (const t of state.transactions) bal += t.type === "income" ? t.amount : -t.amount;
+  for (const t of state.transactions)
+    bal += t.type === "income" ? t.amount : -t.amount;
   return bal;
 }
 
@@ -385,10 +435,15 @@ function monthTotals() {
 /* daily variable-spend average, excluding categories already covered by an active recurring bill/subscription */
 function dailyVariableAvg() {
   const recurringCats = new Set(
-    state.recurring.filter((r) => r.active && r.kind !== "income").map((r) => r.category),
+    state.recurring
+      .filter((r) => r.active && r.kind !== "income")
+      .map((r) => r.category),
   );
   const relevant = state.transactions.filter(
-    (t) => t.type === "expense" && !recurringCats.has(t.category) && withinLastNDays(t.date, 30),
+    (t) =>
+      t.type === "expense" &&
+      !recurringCats.has(t.category) &&
+      withinLastNDays(t.date, 30),
   );
   const total = relevant.reduce((s, t) => s + t.amount, 0);
   return total / 30;
@@ -413,7 +468,13 @@ function buildForecast(days) {
     }
   }
 
-  const points = [{ date: localISO(today), balance: Math.round(currentBalance()), events: [] }];
+  const points = [
+    {
+      date: localISO(today),
+      balance: Math.round(currentBalance()),
+      events: [],
+    },
+  ];
   let bal = currentBalance();
   for (let i = 1; i <= days; i++) {
     const d = new Date(today);
@@ -444,7 +505,9 @@ function buildAlerts() {
 
   const upcoming = upcomingRecurring(7).filter((u) => u.r.kind !== "income");
   for (const u of upcoming) {
-    const days = Math.round((u.date - new Date().setHours(0, 0, 0, 0)) / 86400000);
+    const days = Math.round(
+      (u.date - new Date().setHours(0, 0, 0, 0)) / 86400000,
+    );
     raw.push({
       id: `bill:${u.r.id}:${localISO(u.date)}`,
       level: days <= 2 ? "warn" : "info",
@@ -525,8 +588,14 @@ function snoozeAlert(id, days) {
 function buildForecastNarrative(points) {
   const start = points[0].balance;
   const future = points.slice(1);
-  const low = future.reduce((m, p) => (p.balance < m.balance ? p : m), future[0]);
-  const high = future.reduce((m, p) => (p.balance > m.balance ? p : m), future[0]);
+  const low = future.reduce(
+    (m, p) => (p.balance < m.balance ? p : m),
+    future[0],
+  );
+  const high = future.reduce(
+    (m, p) => (p.balance > m.balance ? p : m),
+    future[0],
+  );
 
   let s = `You're starting at ${fmtMoney(start)} today. `;
   if (low.balance < 0) {
@@ -578,18 +647,27 @@ function svgForecastChart(points) {
   const Y = (v) => mT + (1 - (v - minV) / (maxV - minV)) * plotH;
 
   const linePath = points
-    .map((p, i) => `${i === 0 ? "M" : "L"} ${X(i).toFixed(1)} ${Y(p.balance).toFixed(1)}`)
+    .map(
+      (p, i) =>
+        `${i === 0 ? "M" : "L"} ${X(i).toFixed(1)} ${Y(p.balance).toFixed(1)}`,
+    )
     .join(" ");
   const zeroY = Y(0);
   const areaPath = `${linePath} L ${X(n - 1).toFixed(1)} ${zeroY.toFixed(1)} L ${X(0).toFixed(1)} ${zeroY.toFixed(1)} Z`;
-  const zeroFrac = Math.max(0, Math.min(100, ((maxV - 0) / (maxV - minV)) * 100));
+  const zeroFrac = Math.max(
+    0,
+    Math.min(100, ((maxV - 0) / (maxV - minV)) * 100),
+  );
 
   // biggest single-day positive / negative net events, for callouts
   let bestPos = null,
     bestNeg = null;
   points.forEach((p, i) => {
     if (!p.events.length) return;
-    const net = p.events.reduce((s, r) => s + (r.kind === "income" ? r.amount : -r.amount), 0);
+    const net = p.events.reduce(
+      (s, r) => s + (r.kind === "income" ? r.amount : -r.amount),
+      0,
+    );
     if (net > 0 && (!bestPos || net > bestPos.net)) bestPos = { i, p, net };
     if (net < 0 && (!bestNeg || net < bestNeg.net)) bestNeg = { i, p, net };
   });
@@ -597,7 +675,10 @@ function svgForecastChart(points) {
   const dots = points
     .map((p, i) => {
       if (!p.events.length) return "";
-      const net = p.events.reduce((s, r) => s + (r.kind === "income" ? r.amount : -r.amount), 0);
+      const net = p.events.reduce(
+        (s, r) => s + (r.kind === "income" ? r.amount : -r.amount),
+        0,
+      );
       const color = net >= 0 ? "var(--good)" : "var(--maroon)";
       return `<circle cx="${X(i).toFixed(1)}" cy="${Y(p.balance).toFixed(1)}" r="3.4" fill="${color}" stroke="var(--white)" stroke-width="1"/>`;
     })
@@ -612,7 +693,9 @@ function svgForecastChart(points) {
     const relevant = entry.p.events.filter((e) =>
       positive ? e.kind === "income" : e.kind !== "income",
     );
-    const names = (relevant.length ? relevant : entry.p.events).map((e) => e.name).join(" & ");
+    const names = (relevant.length ? relevant : entry.p.events)
+      .map((e) => e.name)
+      .join(" & ");
     const label = `${positive ? "+" : ""}${fmtMoney(entry.net)} · ${names}`;
     return `<text x="${cx.toFixed(1)}" y="${(cy + dy).toFixed(1)}" text-anchor="${anchor}" class="fchart-label" fill="${positive ? "var(--good)" : "var(--maroon-dark)"}">${escapeHtml(label)}</text>`;
   }
@@ -661,8 +744,26 @@ let state = loadState();
 function escapeHtml(s) {
   return String(s).replace(
     /[&<>"']/g,
-    (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c],
+    (c) =>
+      ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[
+        c
+      ],
   );
+}
+
+/* Sidebar navigation: buttons precede all view sections in the HTML. */
+
+/* The navigation changes the active view without loading a different HTML page. */
+function showView(name) {
+  document
+    .querySelectorAll(".view")
+    .forEach((v) => v.classList.toggle("active", v.id === "view-" + name));
+  document
+    .querySelectorAll("nav.mainnav button[data-view]")
+    .forEach((b) => b.classList.toggle("active", b.dataset.view === name));
+  document.getElementById("mobileTitle").textContent = document.querySelector(
+    `nav.mainnav button[data-view="${name}"] .navlabel`,
+  ).textContent;
 }
 
 /* Views share one state object; a state change redraws the dependent summaries. */
@@ -688,17 +789,21 @@ function renderSampleBanner() {
 function renderBackupReminder() {
   const el = document.getElementById("backupReminder");
   const hasRealData =
-    state.transactions.some((t) => !t.sample) || state.recurring.some((r) => !r.sample);
+    state.transactions.some((t) => !t.sample) ||
+    state.recurring.some((r) => !r.sample);
   if (!hasRealData) {
     el.hidden = true;
     return;
   }
   const days = state.lastExportDate
-    ? Math.floor((new Date() - new Date(state.lastExportDate + "T00:00:00")) / 86400000)
+    ? Math.floor(
+        (new Date() - new Date(state.lastExportDate + "T00:00:00")) / 86400000,
+      )
     : Infinity;
   el.hidden = days < 14;
 }
 
+/* Dashboard: #view-dashboard is the first HTML view. */
 function renderDashboard() {
   const el = document.getElementById("view-dashboard");
   const bal = currentBalance();
@@ -730,7 +835,10 @@ function renderDashboard() {
           }),
         )
         .join("")
-    : emptyHtml("Nothing due soon", "Add a bill or subscription to see it here.");
+    : emptyHtml(
+        "Nothing due soon",
+        "Add a bill or subscription to see it here.",
+      );
 
   const recentEl = el.querySelector("#dashRecent");
   recentEl.innerHTML = recentTx.length
@@ -761,10 +869,13 @@ function txRowActions(id) {
   </div>`;
 }
 
+/* Transactions: #view-transactions follows Dashboard. */
 function renderTransactions() {
   const list = document.getElementById("txList");
   const filterCat = document.getElementById("txFilter").value;
-  let rows = [...state.transactions].sort((a, b) => new Date(b.date) - new Date(a.date));
+  let rows = [...state.transactions].sort(
+    (a, b) => new Date(b.date) - new Date(a.date),
+  );
   if (filterCat !== "all") rows = rows.filter((t) => t.category === filterCat);
 
   list.innerHTML = rows.length
@@ -782,18 +893,29 @@ function renderTransactions() {
     </div>`,
         )
         .join("")
-    : emptyHtml("No transactions here", "Try a different filter, or add a new transaction.");
+    : emptyHtml(
+        "No transactions here",
+        "Try a different filter, or add a new transaction.",
+      );
 }
 
+/* Bills and income: the three lists inside #view-bills. */
 function renderBills() {
   const billsList = document.getElementById("billsList");
   const incomeList = document.getElementById("incomeList");
-  const bills = state.recurring.filter((r) => r.kind !== "income").sort((a, b) => a.day - b.day);
-  const incomes = state.recurring.filter((r) => r.kind === "income").sort((a, b) => a.day - b.day);
+  const bills = state.recurring
+    .filter((r) => r.kind !== "income")
+    .sort((a, b) => a.day - b.day);
+  const incomes = state.recurring
+    .filter((r) => r.kind === "income")
+    .sort((a, b) => a.day - b.day);
 
   billsList.innerHTML = bills.length
     ? bills.map((r) => recurringRow(r)).join("")
-    : emptyHtml("No bills or subscriptions yet", "Add one to start tracking due dates.");
+    : emptyHtml(
+        "No bills or subscriptions yet",
+        "Add one to start tracking due dates.",
+      );
   incomeList.innerHTML = incomes.length
     ? incomes.map((r) => recurringRow(r)).join("")
     : emptyHtml(
@@ -845,6 +967,7 @@ function recurringRow(r) {
   </div>`;
 }
 
+/* Budget: #view-budget category progress rows. */
 function renderBudget() {
   const el = document.getElementById("budgetList");
   const { byCategory } = monthTotals();
@@ -853,7 +976,8 @@ function renderBudget() {
     .map((c) => {
       const limit = state.budgets[c] || 0;
       const spent = byCategory[c] || 0;
-      const pct = limit > 0 ? Math.min(100, Math.round((spent / limit) * 100)) : 0;
+      const pct =
+        limit > 0 ? Math.min(100, Math.round((spent / limit) * 100)) : 0;
       const over = limit > 0 && spent > limit;
       return `<div class="budget-row">
       <div class="toprow"><span class="catname">${c}</span><span class="figures">${fmtMoney(spent)} ${limit ? "of " + fmtMoney(limit) : "· no budget set"}</span></div>
@@ -868,9 +992,9 @@ function renderBudget() {
       const val = parseFloat(e.target.value) || 0;
       if (val > 0) {
         state.budgets[cat] = val;
-        state.sampleBudgetCategories = (state.sampleBudgetCategories || []).filter(
-          (c) => c !== cat,
-        );
+        state.sampleBudgetCategories = (
+          state.sampleBudgetCategories || []
+        ).filter((c) => c !== cat);
       } else delete state.budgets[cat];
       saveState();
       renderBudget();
@@ -880,13 +1004,16 @@ function renderBudget() {
   });
 }
 
+/* Forecast: #view-forecast chart and explanatory note. */
 function renderForecast() {
   const days = 45;
   const points = buildForecast(days);
   document.getElementById("forecastChart").innerHTML = svgForecastChart(points);
-  document.getElementById("forecastNote").textContent = buildForecastNarrative(points);
+  document.getElementById("forecastNote").textContent =
+    buildForecastNarrative(points);
 }
 
+/* What-if: #view-whatif scenario result. */
 function renderWhatIf(result) {
   const el = document.getElementById("whatifResult");
   if (!result) {
@@ -901,6 +1028,31 @@ function renderWhatIf(result) {
     <p style="margin-top:8px;color:var(--ink-soft);font-size:12.5px;">Based on your recurring bills and recent day-to-day spending — not a guarantee, just a projection from your current patterns.</p>`;
 }
 
+/* What-if form: the scenario lives after Forecast and before Alerts. */
+
+function runWhatIf(e) {
+  e.preventDefault();
+  const amount = parseFloat(document.getElementById("whatifAmount").value);
+  const date = document.getElementById("whatifDate").value;
+  if (!amount || !date) return;
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+  const target = new Date(date + "T00:00:00");
+  const days = Math.max(1, Math.round((target - today) / 86400000));
+  const points = buildForecast(Math.max(days, 45));
+  const point = points[days] || points[points.length - 1];
+  const balanceBefore = point.balance;
+  const balanceAfter = balanceBefore - amount;
+  renderWhatIf({
+    ok: balanceAfter >= 0,
+    amount,
+    date,
+    balanceBefore,
+    balanceAfter,
+  });
+}
+
+/* Alerts view: warning rows and notification controls. */
 function renderAlertsView() {
   const el = document.getElementById("alertsList");
   const alerts = buildAlerts();
@@ -917,7 +1069,10 @@ function renderAlertsView() {
     </div>`,
         )
         .join("")
-    : emptyHtml("All clear", "No budget, bill, or unusual-spending alerts right now.");
+    : emptyHtml(
+        "All clear",
+        "No budget, bill, or unusual-spending alerts right now.",
+      );
   const navBadge = document.getElementById("alertNavBadge");
   if (alerts.length) {
     navBadge.style.display = "flex";
@@ -932,7 +1087,9 @@ function renderNotifySettings() {
   const btn = document.getElementById("notifyBtn");
   if (!btn) return;
   const hint = document.getElementById("notifyHint");
-  const installed = window.matchMedia && window.matchMedia("(display-mode: standalone)").matches;
+  const installed =
+    window.matchMedia &&
+    window.matchMedia("(display-mode: standalone)").matches;
   if (!("Notification" in window)) {
     btn.textContent = "Notifications not supported here";
     btn.disabled = true;
@@ -958,7 +1115,9 @@ function renderNotifySettings() {
 function populateCategorySelects() {
   document.querySelectorAll(".category-select").forEach((sel) => {
     const current = sel.value;
-    sel.innerHTML = CATEGORIES.map((c) => `<option value="${c}">${c}</option>`).join("");
+    sel.innerHTML = CATEGORIES.map(
+      (c) => `<option value="${c}">${c}</option>`,
+    ).join("");
     if (current) sel.value = current;
   });
   const filter = document.getElementById("txFilter");
@@ -970,47 +1129,16 @@ function populateCategorySelects() {
   }
 }
 
-/* ---------------- navigation ---------------- */
-
-/* The navigation changes the active view without loading a different HTML page. */
-function showView(name) {
-  document
-    .querySelectorAll(".view")
-    .forEach((v) => v.classList.toggle("active", v.id === "view-" + name));
-  document
-    .querySelectorAll("nav.mainnav button")
-    .forEach((b) => b.classList.toggle("active", b.dataset.view === name));
-  document.getElementById("mobileTitle").textContent = document.querySelector(
-    `nav.mainnav button[data-view="${name}"] .navlabel`,
-  ).textContent;
-}
-
-/* ---------------- toast (used instead of blocking confirm() popups for delete/undo) ---------------- */
-
-let toastTimer = null;
-let pendingUndo = null;
-function showToast(message, undoFn) {
-  clearTimeout(toastTimer);
-  const el = document.getElementById("toast");
-  document.getElementById("toastMsg").textContent = message;
-  const undoBtn = document.getElementById("toastUndoBtn");
-  undoBtn.style.display = undoFn ? "inline-block" : "none";
-  pendingUndo = undoFn || null;
-  el.hidden = false;
-  toastTimer = setTimeout(() => {
-    el.hidden = true;
-    pendingUndo = null;
-  }, 6000);
-}
-
-/* ---------------- transaction modal ---------------- */
+/* First HTML dialog: add or edit a transaction. */
 
 let editingTxId = null;
 
 function openTxModal(id, defaultType) {
   editingTxId = id || null;
   const t = id ? state.transactions.find((x) => x.id === id) : null;
-  document.getElementById("txModalTitle").textContent = id ? "Edit transaction" : "Add transaction";
+  document.getElementById("txModalTitle").textContent = id
+    ? "Edit transaction"
+    : "Add transaction";
   document.getElementById("txDesc").value = t ? t.desc : "";
   document.getElementById("txAmount").value = t ? t.amount : "";
   document.getElementById("txDate").value = t ? t.date : isoToday();
@@ -1037,7 +1165,8 @@ function onTxDescInput() {
   if (editingTxId) return; // don't fight a user editing an existing categorisation
   const desc = document.getElementById("txDesc").value;
   const type = document.getElementById("txModal").dataset.type;
-  if (desc.length > 2) document.getElementById("txCategory").value = categorize(desc, type);
+  if (desc.length > 2)
+    document.getElementById("txCategory").value = categorize(desc, type);
 }
 function saveTxModal(e) {
   e.preventDefault();
@@ -1071,7 +1200,7 @@ function deleteTx(id) {
   });
 }
 
-/* ---------------- recurring modal ---------------- */
+/* Second HTML dialog: add or edit bills and income. */
 
 let editingRecId = null;
 
@@ -1104,7 +1233,8 @@ function setRecKind(kind) {
   document
     .querySelectorAll("#recKindToggle button")
     .forEach((b) => b.classList.toggle("active", b.dataset.kind === kind));
-  if (kind === "income" && !editingRecId) document.getElementById("recCategory").value = "Income";
+  if (kind === "income" && !editingRecId)
+    document.getElementById("recCategory").value = "Income";
 }
 function setRecFrequency(freq) {
   document.getElementById("recModal").dataset.freq = freq;
@@ -1163,25 +1293,7 @@ function deleteRecurring(id) {
   });
 }
 
-/* ---------------- what-if ---------------- */
-
-function runWhatIf(e) {
-  e.preventDefault();
-  const amount = parseFloat(document.getElementById("whatifAmount").value);
-  const date = document.getElementById("whatifDate").value;
-  if (!amount || !date) return;
-  const today = new Date();
-  today.setHours(0, 0, 0, 0);
-  const target = new Date(date + "T00:00:00");
-  const days = Math.max(1, Math.round((target - today) / 86400000));
-  const points = buildForecast(Math.max(days, 45));
-  const point = points[days] || points[points.length - 1];
-  const balanceBefore = point.balance;
-  const balanceAfter = balanceBefore - amount;
-  renderWhatIf({ ok: balanceAfter >= 0, amount, date, balanceBefore, balanceAfter });
-}
-
-/* ---------------- starting balance ---------------- */
+/* Third HTML dialog: starting balance. */
 
 function openBalanceModal() {
   document.getElementById("balanceInput").value = state.startingBalance || 0;
@@ -1192,16 +1304,19 @@ function closeBalanceModal() {
 }
 function saveBalanceModal(e) {
   e.preventDefault();
-  state.startingBalance = parseFloat(document.getElementById("balanceInput").value) || 0;
+  state.startingBalance =
+    parseFloat(document.getElementById("balanceInput").value) || 0;
   saveState();
   closeBalanceModal();
   renderAll();
 }
 
-/* ---------------- export / import ---------------- */
+/* Fourth HTML dialog: preview spreadsheet imports; also handles backups. */
 
 function exportData() {
-  const blob = new Blob([JSON.stringify(state, null, 2)], { type: "application/json" });
+  const blob = new Blob([JSON.stringify(state, null, 2)], {
+    type: "application/json",
+  });
   const url = URL.createObjectURL(blob);
   const a = document.createElement("a");
   a.href = url;
@@ -1224,7 +1339,13 @@ function exportTransactionsExcel() {
       Amount: t.amount,
     }));
   const ws = XLSX.utils.json_to_sheet(rows);
-  ws["!cols"] = [{ wch: 12 }, { wch: 34 }, { wch: 16 }, { wch: 10 }, { wch: 12 }];
+  ws["!cols"] = [
+    { wch: 12 },
+    { wch: 34 },
+    { wch: 16 },
+    { wch: 10 },
+    { wch: 12 },
+  ];
   const wb = XLSX.utils.book_new();
   XLSX.utils.book_append_sheet(wb, ws, "Transactions");
   XLSX.writeFile(wb, `coursemaccon-finance-transactions-${isoToday()}.xlsx`);
@@ -1248,7 +1369,13 @@ function downloadExcelTemplate() {
     },
   ];
   const ws = XLSX.utils.json_to_sheet(sample);
-  ws["!cols"] = [{ wch: 12 }, { wch: 34 }, { wch: 16 }, { wch: 10 }, { wch: 12 }];
+  ws["!cols"] = [
+    { wch: 12 },
+    { wch: 34 },
+    { wch: 16 },
+    { wch: 10 },
+    { wch: 12 },
+  ];
   const wb = XLSX.utils.book_new();
   XLSX.utils.book_append_sheet(wb, ws, "Transactions");
   const catRows = CATEGORIES.map((c) => ({ "Valid category names": c }));
@@ -1263,7 +1390,8 @@ function parseExcelDate(val) {
   if (typeof val === "number") {
     // Excel serial date, in case cellDates parsing didn't catch it
     const d = XLSX.SSF ? XLSX.SSF.parse_date_code(val) : null;
-    if (d) return `${d.y}-${String(d.m).padStart(2, "0")}-${String(d.d).padStart(2, "0")}`;
+    if (d)
+      return `${d.y}-${String(d.m).padStart(2, "0")}-${String(d.d).padStart(2, "0")}`;
   }
   if (typeof val === "string") {
     const d = new Date(val);
@@ -1277,7 +1405,9 @@ let pendingImportRows = [];
 function handleExcelImport(file) {
   if (!file) return;
   if (typeof XLSX === "undefined") {
-    alert("Excel support didn't load — check your internet connection and try again.");
+    alert(
+      "Excel support didn't load — check your internet connection and try again.",
+    );
     return;
   }
   const reader = new FileReader();
@@ -1292,7 +1422,9 @@ function handleExcelImport(file) {
       const errors = [];
       rows.forEach((row, i) => {
         const get = (name) => {
-          const key = Object.keys(row).find((k) => k.trim().toLowerCase() === name);
+          const key = Object.keys(row).find(
+            (k) => k.trim().toLowerCase() === name,
+          );
           return key ? row[key] : undefined;
         };
         const rawDate = get("date");
@@ -1316,7 +1448,9 @@ function handleExcelImport(file) {
           return;
         }
         if (amountNum === undefined || isNaN(amountNum) || amountNum === 0) {
-          errors.push(`Row ${rowNum}: amount must be a number ("${rawAmount}").`);
+          errors.push(
+            `Row ${rowNum}: amount must be a number ("${rawAmount}").`,
+          );
           return;
         }
 
@@ -1325,10 +1459,19 @@ function handleExcelImport(file) {
         else if (rawType.startsWith("ex")) type = "expense";
         else type = amountNum < 0 ? "expense" : "income";
 
-        const canonical = CATEGORIES.find((c) => c.toLowerCase() === rawCategory.toLowerCase());
+        const canonical = CATEGORIES.find(
+          (c) => c.toLowerCase() === rawCategory.toLowerCase(),
+        );
         const category = canonical || categorize(desc, type);
 
-        valid.push({ id: uid(), date, desc, amount: Math.abs(amountNum), type, category });
+        valid.push({
+          id: uid(),
+          date,
+          desc,
+          amount: Math.abs(amountNum),
+          type,
+          category,
+        });
       });
 
       pendingImportRows = valid;
@@ -1378,7 +1521,8 @@ function importData(file) {
   reader.onload = () => {
     try {
       const parsed = JSON.parse(reader.result);
-      if (!Array.isArray(parsed.transactions)) throw new Error("Not a recognised backup file");
+      if (!Array.isArray(parsed.transactions))
+        throw new Error("Not a recognised backup file");
       if (
         !confirm(
           "This replaces everything currently in the app with the contents of this file. Continue?",
@@ -1390,7 +1534,11 @@ function importData(file) {
       renderAll();
       showToast("Data imported.");
     } catch (err) {
-      alert("Couldn't read that file — is it a Coursemaccon Finance export? (" + err.message + ")");
+      alert(
+        "Couldn't read that file — is it a Coursemaccon Finance export? (" +
+          err.message +
+          ")",
+      );
     }
   };
   reader.readAsText(file);
@@ -1445,7 +1593,11 @@ function checkAndNotify() {
   if (state.settings.lastNotifyCheck === today) return; // at most once per session/day
   state.settings.lastNotifyCheck = today;
   const urgent = buildAlerts().filter((a) => a.level === "warn");
-  if (urgent.length && state.settings.browserNotify && "serviceWorker" in navigator) {
+  if (
+    urgent.length &&
+    state.settings.browserNotify &&
+    "serviceWorker" in navigator
+  ) {
     navigator.serviceWorker.ready.then((reg) => {
       reg.showNotification("Coursemaccon Finance", {
         body:
@@ -1470,25 +1622,67 @@ window.addEventListener("beforeinstallprompt", (e) => {
   deferredInstallPrompt = e;
   document.getElementById("installBtn").hidden = false;
 });
+window.addEventListener("appinstalled", () => {
+  deferredInstallPrompt = null;
+  document.getElementById("installBtn").hidden = true;
+});
 function triggerInstall() {
-  if (!deferredInstallPrompt) return;
+  if (
+    window.matchMedia?.("(display-mode: standalone)").matches ||
+    navigator.standalone
+  ) {
+    showToast("This app is already installed.");
+    return;
+  }
+  if (!deferredInstallPrompt) {
+    showToast(
+      "Use your browser menu or Share option to add this page to your home screen.",
+    );
+    return;
+  }
   deferredInstallPrompt.prompt();
   deferredInstallPrompt = null;
   document.getElementById("installBtn").hidden = true;
+}
+
+/* Undo toast: the final UI element after the dialogs in the HTML. */
+
+let toastTimer = null;
+let pendingUndo = null;
+function showToast(message, undoFn) {
+  clearTimeout(toastTimer);
+  const el = document.getElementById("toast");
+  document.getElementById("toastMsg").textContent = message;
+  const undoBtn = document.getElementById("toastUndoBtn");
+  undoBtn.style.display = undoFn ? "inline-block" : "none";
+  pendingUndo = undoFn || null;
+  el.hidden = false;
+  toastTimer = setTimeout(() => {
+    el.hidden = true;
+    pendingUndo = null;
+  }, 6000);
 }
 
 /* ---------------- init ---------------- */
 
 function init() {
   document
-    .querySelectorAll("nav.mainnav button")
-    .forEach((b) => b.addEventListener("click", () => showView(b.dataset.view)));
+    .querySelectorAll("nav.mainnav button[data-view]")
+    .forEach((b) =>
+      b.addEventListener("click", () => showView(b.dataset.view)),
+    );
   document.getElementById("txForm").addEventListener("submit", saveTxModal);
   document.getElementById("txDesc").addEventListener("input", onTxDescInput);
-  document.getElementById("recForm").addEventListener("submit", saveRecurringModal);
+  document
+    .getElementById("recForm")
+    .addEventListener("submit", saveRecurringModal);
   document.getElementById("whatifForm").addEventListener("submit", runWhatIf);
-  document.getElementById("balanceForm").addEventListener("submit", saveBalanceModal);
-  document.getElementById("txFilter").addEventListener("change", renderTransactions);
+  document
+    .getElementById("balanceForm")
+    .addEventListener("submit", saveBalanceModal);
+  document
+    .getElementById("txFilter")
+    .addEventListener("change", renderTransactions);
   document.getElementById("toastUndoBtn").addEventListener("click", () => {
     if (pendingUndo) pendingUndo();
     document.getElementById("toast").hidden = true;

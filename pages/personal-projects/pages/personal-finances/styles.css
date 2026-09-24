@@ -1,21 +1,22 @@
-/* Personal finance application styles. Class names map to personal-finances.html
-   and the transaction/forecast markup built dynamically by app.js. */
-@import url('https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700&display=swap');
+/* Personal finance styles follow personal-finances.html: sidebar, main banners,
+   shared view components, budget, forecast, what-if, alerts, dialogs and toast.
+   app.js also creates transaction rows and the forecast chart at runtime. */
+@import url("https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700&display=swap");
 
 :root {
   --maroon: #5e0a0a;
   --maroon-tint: #d4d4d4;
-  --cream: #FBF8F5;
-  --cream-alt: #F3EAE4;
-  --ink: #241C1D;
-  --ink-soft: #6B5F60;
-  --line: #E8DFDA;
-  --good: #2F6B4F;
-  --good-tint: #E4EFE9;
+  --cream: #fbf8f5;
+  --cream-alt: #f3eae4;
+  --ink: #241c1d;
+  --ink-soft: #6b5f60;
+  --line: #e8dfda;
+  --good: #2f6b4f;
+  --good-tint: #e4efe9;
   --warn: #7a1b2e;
   --progress-fill: #7a1b2e;
   --warn-tint: #800000;
-  --white: #FFFFFF;
+  --white: #ffffff;
   --light-1: #ffffff;
   --light-2: #fafafa;
   --light-3: #f5f5f5;
@@ -32,7 +33,7 @@
   --radius-lg: 18px;
   --radius-md: 12px;
   --radius-full: 999px;
-  --shadow-card: 0 8px 16px rgba(0, 0, 0, .25);
+  --shadow-card: 0 8px 16px rgba(0, 0, 0, 0.25);
   font-size: 16px;
 }
 
@@ -48,7 +49,9 @@ body {
 body {
   margin: 0;
   color: var(--ink);
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-family:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial,
+    sans-serif;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -58,7 +61,12 @@ h3,
 .brand-word,
 .num,
 nav .navlabel {
-  font-family: "Sora", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-family:
+    "Sora",
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
 }
 
 h1,
@@ -161,6 +169,15 @@ nav.mainnav button.active {
   font-weight: 600;
 }
 
+/* The separate install action appears only in the mobile navigation. */
+nav.mainnav button.mobile-install {
+  display: none;
+}
+
+nav.mainnav button.mobile-install[hidden] {
+  display: none;
+}
+
 nav.mainnav .icon {
   width: 18px;
   text-align: center;
@@ -190,9 +207,9 @@ nav.mainnav .icon {
   border-color: var(--maroon);
 }
 
-/* Mobile install hint chip */
+/* The desktop install action is hidden until the browser offers a prompt. */
 #installBtn[hidden] {
-  display: block;
+  display: none;
 }
 
 .main {
@@ -200,6 +217,30 @@ nav.mainnav .icon {
   width: 100%;
   height: 100vh;
   overflow-y: scroll;
+}
+
+/* Mobile heading: follows the sidebar in the HTML. */
+.mobile-topbar {
+  display: none;
+}
+
+/* ---------- Sample data banner ---------- */
+.banner {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 12px;
+  background: var(--light-3);
+  border: 1px dashed var(--line);
+  border-radius: 50px;
+  padding: 12px 16px;
+  margin-bottom: 24px;
+  font-size: 13.5px;
+  color: var(--ink-soft);
+}
+
+.banner[hidden] {
+  display: none;
 }
 
 /* app.js switches the active view in place; inactive views remain in the DOM. */
@@ -225,7 +266,7 @@ nav.mainnav .icon {
   font-size: 14.5px;
 }
 
-/* ---------- Cards & grids ---------- */
+/* Shared cards and grids used by the dashboard and subsequent views. */
 .card {
   background: var(--white);
   border: 1px solid var(--line);
@@ -304,8 +345,6 @@ nav.mainnav .icon {
   cursor: pointer;
 }
 
-/* ---------- Pills / badges ---------- */
-
 /* ---------- Buttons ---------- */
 .btn {
   display: inline-flex;
@@ -351,7 +390,7 @@ nav.mainnav .icon {
   cursor: not-allowed;
 }
 
-/* ---------- Lists / tables ---------- */
+/* Transaction and recurring-item lists (dashboard, transactions, bills). */
 .list {
   display: flex;
   flex-direction: column;
@@ -445,7 +484,7 @@ nav.mainnav .icon {
   font-size: 15px;
 }
 
-/* ---------- Forms ---------- */
+/* Controls reused by the What-if view and the editing dialogs. */
 .field {
   display: flex;
   flex-direction: column;
@@ -510,46 +549,7 @@ nav.mainnav .icon {
   color: var(--good);
 }
 
-/* ---------- Modal ---------- */
-.modal-backdrop {
-  position: fixed;
-  inset: 0;
-  background: rgba(36, 28, 29, 0.45);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
-  z-index: 40;
-}
-
-.modal-backdrop[hidden] {
-  display: none;
-}
-
-.modal {
-  background: var(--white);
-  border-radius: var(--radius-lg);
-  padding: 24px;
-  width: 100%;
-  max-width: 420px;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
-  max-height: 88vh;
-  overflow-y: auto;
-}
-
-.modal h3 {
-  font-size: 18px;
-  margin-bottom: 16px;
-}
-
-.modal-actions {
-  display: flex;
-  justify-content: flex-end;
-  gap: 10px;
-  margin-top: 6px;
-}
-
-/* ---------- Progress ---------- */
+/* Budget view: progress indicators and category totals. */
 .progress-track {
   background: var(--cream-alt);
   border-radius: var(--radius-full);
@@ -586,87 +586,7 @@ nav.mainnav .icon {
   color: var(--ink-soft);
 }
 
-/* ---------- Sample data banner ---------- */
-.banner {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  gap: 12px;
-  background: var(--light-3);
-  border: 1px dashed var(--line);
-  border-radius: 50px;
-  padding: 12px 16px;
-  margin-bottom: 24px;
-  font-size: 13.5px;
-  color: var(--ink-soft);
-}
-
-.banner[hidden] {
-  display: none;
-}
-
-/* ---------- Alerts view ---------- */
-.alert-item {
-  display: flex;
-  gap: 12px;
-  padding: 14px 4px;
-  border-bottom: 1px solid var(--line);
-}
-
-.alert-item:last-child {
-  border-bottom: none;
-}
-
-.alert-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  margin-top: 6px;
-  flex: none;
-}
-
-.alert-dot.warn {
-  background: var(--warn);
-}
-
-.alert-dot.info {
-  background: var(--maroon);
-}
-
-.alert-item .t {
-  font-weight: 600;
-  font-size: 14px;
-}
-
-.alert-item .d {
-  font-size: 13px;
-  color: var(--ink-soft);
-  margin-top: 2px;
-}
-
-/* ---------- What-if ---------- */
-.whatif-result {
-  margin-top: 20px;
-  padding: 18px;
-  border-radius: var(--radius-md);
-  background: var(--cream-alt);
-}
-
-.whatif-result.good {
-  background: var(--good-tint);
-}
-
-.whatif-result.bad {
-  background: var(--warn-tint);
-}
-
-.whatif-result .headline {
-  font-size: 17px;
-  font-weight: 700;
-  margin-bottom: 4px;
-}
-
-/* ---------- Forecast SVG, rendered from state by app.js ---------- */
+/* Forecast view: SVG chart and legend generated by app.js. */
 .fchart-label {
   font-family: "Sora", sans-serif;
   font-size: 12px;
@@ -706,6 +626,107 @@ nav.mainnav .icon {
   margin-right: 6px;
 }
 
+/* What-if view: results below the scenario form. */
+.whatif-result {
+  margin-top: 20px;
+  padding: 18px;
+  border-radius: var(--radius-md);
+  background: var(--cream-alt);
+}
+
+.whatif-result.good {
+  background: var(--good-tint);
+}
+
+.whatif-result.bad {
+  background: var(--warn-tint);
+}
+
+.whatif-result .headline {
+  font-size: 17px;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+/* Alerts view: warning and information rows. */
+.alert-item {
+  display: flex;
+  gap: 12px;
+  padding: 14px 4px;
+  border-bottom: 1px solid var(--line);
+}
+
+.alert-item:last-child {
+  border-bottom: none;
+}
+
+.alert-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  margin-top: 6px;
+  flex: none;
+}
+
+.alert-dot.warn {
+  background: var(--warn);
+}
+
+.alert-dot.info {
+  background: var(--maroon);
+}
+
+.alert-item .t {
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.alert-item .d {
+  font-size: 13px;
+  color: var(--ink-soft);
+  margin-top: 2px;
+}
+
+/* Transaction, recurring, starting-balance and import-preview dialogs. */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(36, 28, 29, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  z-index: 40;
+}
+
+.modal-backdrop[hidden] {
+  display: none;
+}
+
+.modal {
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  padding: 24px;
+  width: 100%;
+  max-width: 420px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
+  max-height: 88vh;
+  overflow-y: auto;
+}
+
+.modal h3 {
+  font-size: 18px;
+  margin-bottom: 16px;
+}
+
+.modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 6px;
+}
+
+/* Undo toast follows the dialogs in the HTML. */
 .toast {
   position: fixed;
   left: 50%;
@@ -736,11 +757,7 @@ nav.mainnav .icon {
   font-size: 13.5px;
 }
 
-/* ---------- Mobile nav ---------- */
-.mobile-topbar {
-  display: none;
-}
-
+/* Narrow-screen changes for the existing sidebar, views and dialogs. */
 @media (max-width: 860px) {
   .app {
     grid-template-columns: 1fr;
@@ -786,6 +803,16 @@ nav.mainnav .icon {
     font-size: 10.5px;
   }
 
+  nav.mainnav button.mobile-install {
+    display: flex;
+    position: sticky;
+    left: 0;
+    z-index: 1;
+    border: 1px solid var(--light-6);
+    background: var(--dark-4);
+    color: var(--white);
+  }
+
   nav.mainnav .icon {
     font-size: 17px;
   }
@@ -799,6 +826,23 @@ nav.mainnav .icon {
     align-items: center;
     justify-content: space-between;
     margin-bottom: 20px;
+  }
+
+  .mobile-topbar a {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    flex: 0 0 auto;
+    margin-left: auto;
+  }
+
+  /* The existing footer logo is white, so invert it against the light header. */
+  .mobile-topbar .brand-mark {
+    display: block;
+    width: 110px;
+    max-width: 32vw;
+    height: auto;
+    filter: invert(1);
   }
 
   .grid.cols-3 {

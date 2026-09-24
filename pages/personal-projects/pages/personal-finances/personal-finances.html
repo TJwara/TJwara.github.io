@@ -3,7 +3,10 @@
   <head>
     <meta charset="UTF-8" />
 
-    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
 
     <title>Personal Finance Platform | Thabiso Jwara</title>
 
@@ -46,7 +49,10 @@
 
     <meta property="og:site_name" content="Thabiso Jwara" />
 
-    <meta property="og:title" content="Personal Finance Platform | Thabiso Jwara" />
+    <meta
+      property="og:title"
+      content="Personal Finance Platform | Thabiso Jwara"
+    />
 
     <meta
       property="og:description"
@@ -58,24 +64,39 @@
       content="https://tjwara.github.io/pages/personal-projects/pages/personal-finances/personal-finances.html"
     />
 
-    <meta property="og:image" content="https://tjwara.github.io/images/og-image.png" />
+    <meta
+      property="og:image"
+      content="https://tjwara.github.io/images/og-image.png"
+    />
 
-    <meta property="og:image:alt" content="Thabiso Jwara Personal Finance Platform" />
+    <meta
+      property="og:image:alt"
+      content="Thabiso Jwara Personal Finance Platform"
+    />
 
     <!-- TWITTER / X -->
 
     <meta name="twitter:card" content="summary_large_image" />
 
-    <meta name="twitter:title" content="Personal Finance Platform | Thabiso Jwara" />
+    <meta
+      name="twitter:title"
+      content="Personal Finance Platform | Thabiso Jwara"
+    />
 
     <meta
       name="twitter:description"
       content="Explore Thabiso Jwara's personal finance platform, a web application designed to help users understand spending, manage budgets, track bills and monitor cash flow."
     />
 
-    <meta name="twitter:image" content="https://tjwara.github.io/images/og-image.png" />
+    <meta
+      name="twitter:image"
+      content="https://tjwara.github.io/images/og-image.png"
+    />
 
-    <meta name="twitter:image:alt" content="Thabiso Jwara Personal Finance Platform" />
+    <meta
+      name="twitter:image:alt"
+      content="Thabiso Jwara Personal Finance Platform"
+    />
 
     <!-- THEME -->
 
@@ -141,7 +162,7 @@
               "Personal Finance Applications"
             ]
           },
-      
+
           {
             "@type": "WebSite",
             "@id": "https://tjwara.github.io/#website",
@@ -152,7 +173,7 @@
             },
             "inLanguage": "en-ZA"
           },
-      
+
           {
             "@type": "WebPage",
             "@id": "https://tjwara.github.io/pages/personal-projects/pages/personal-finances/personal-finances.html#webpage",
@@ -170,7 +191,7 @@
             },
             "inLanguage": "en-ZA"
           },
-      
+
           {
             "@type": "SoftwareApplication",
             "@id": "https://tjwara.github.io/pages/personal-projects/pages/personal-finances/personal-finances.html#application",
@@ -195,11 +216,36 @@
       <aside class="sidebar">
         <div class="brand">
           <a href="../../personal-projects.html"
-            ><img class="brand-mark" src="../../../../images/footer-logo.png" alt=""
+            ><img
+              class="brand-mark"
+              src="../../../../images/footer-logo.png"
+              alt=""
           /></a>
         </div>
 
         <nav class="mainnav">
+          <!-- Keep the mobile install action first so it remains visible in the scrolling bottom bar. -->
+          <button
+            id="mobileInstallBtn"
+            class="mobile-install"
+            type="button"
+            onclick="triggerInstall()"
+          >
+            <span class="icon"
+              ><svg
+                width="17"
+                height="17"
+                viewBox="0 0 16 16"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.6"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M8 2v8m-3-3 3 3 3-3M2 11v2.5h12V11" /></svg
+            ></span>
+            <span class="navlabel">Install app</span>
+          </button>
           <button data-view="dashboard" class="active">
             <span class="icon"
               ><svg
@@ -287,12 +333,15 @@
                 stroke-width="1.6"
               >
                 <circle cx="8" cy="8" r="6.3" />
-                <path d="M6.2 6.2a1.8 1.8 0 1 1 2.6 1.6c-.7.4-.9.8-.9 1.5" stroke-linecap="round" />
+                <path
+                  d="M6.2 6.2a1.8 1.8 0 1 1 2.6 1.6c-.7.4-.9.8-.9 1.5"
+                  stroke-linecap="round"
+                />
                 <circle cx="8" cy="11.2" r="0.15" stroke-width="1.4" /></svg
             ></span>
             <span class="navlabel">What-if</span>
           </button>
-          <button data-view="alerts" style="position:relative;">
+          <button data-view="alerts" style="position: relative">
             <span class="icon"
               ><svg
                 width="17"
@@ -308,23 +357,49 @@
             <span class="navlabel">Alerts</span>
             <span
               id="alertNavBadge"
-              style="position:absolute;top:4px;right:10px;background:var(--maroon);color:#fff;font-size:10px;min-width:16px;height:16px;border-radius:8px;align-items:center;justify-content:center;padding:0 4px;display:none;"
+              style="
+                position: absolute;
+                top: 4px;
+                right: 10px;
+                background: var(--maroon);
+                color: #fff;
+                font-size: 10px;
+                min-width: 16px;
+                height: 16px;
+                border-radius: 8px;
+                align-items: center;
+                justify-content: center;
+                padding: 0 4px;
+                display: none;
+              "
             ></span>
           </button>
         </nav>
 
         <div class="sidebar-foot">
-          <button id="installBtn" class="ghost-btn" hidden onclick="triggerInstall()"
-            >Install app</button
+          <button
+            id="installBtn"
+            class="ghost-btn"
+            hidden
+            onclick="triggerInstall()"
           >
-          <button class="ghost-btn" onclick="openBalanceModal()">Set starting balance</button>
-          <button class="ghost-btn" onclick="exportData()">Export backup (.json)</button>
-          <button class="ghost-btn" onclick="exportTransactionsExcel()"
-            >Export transactions (.xlsx)</button
+            Install app
+          </button>
+          <button class="ghost-btn" onclick="openBalanceModal()">
+            Set starting balance
+          </button>
+          <button class="ghost-btn" onclick="exportData()">
+            Export backup (.json)
+          </button>
+          <button class="ghost-btn" onclick="exportTransactionsExcel()">
+            Export transactions (.xlsx)
+          </button>
+          <button
+            class="ghost-btn"
+            onclick="document.getElementById('importInput').click()"
           >
-          <button class="ghost-btn" onclick="document.getElementById('importInput').click()"
-            >Import backup</button
-          >
+            Import backup
+          </button>
           <input
             type="file"
             id="importInput"
@@ -337,21 +412,35 @@
 
       <main class="main">
         <div class="mobile-topbar">
-          <span class="brand-word" style="font-size:16px;" id="mobileTitle">Dashboard</span>
+          <span class="brand-word" style="font-size: 16px" id="mobileTitle"
+            >Dashboard</span
+          >
           <a href="../../personal-projects.html"
-            ><img class="brand-mark" src="../../../../images/footer-logo.png" alt=""
+            ><img
+              class="brand-mark"
+              src="../../../../images/footer-logo.png"
+              alt=""
           /></a>
         </div>
 
         <div id="sampleBanner" class="banner" hidden>
-          <span>You're looking at sample data so you can see how everything works.</span>
-          <button class="btn btn-secondary" style="padding:6px 14px;" onclick="clearSampleData()"
-            >Clear sample data</button
+          <span
+            >You're looking at sample data so you can see how everything
+            works.</span
           >
+          <button
+            class="btn btn-secondary"
+            style="padding: 6px 14px"
+            onclick="clearSampleData()"
+          >
+            Clear sample data
+          </button>
         </div>
 
         <div id="backupReminder" class="banner" hidden>
-          <button class="btn btn-secondary" onclick="exportData()">Export Backup</button>
+          <button class="btn btn-secondary" onclick="exportData()">
+            Export Backup
+          </button>
         </div>
 
         <!-- Dashboard -->
@@ -361,7 +450,7 @@
             <p class="lede">Here's where things stand right now.</p>
           </div>
 
-          <div class="card hero-balance" style="margin-bottom:16px;">
+          <div class="card hero-balance" style="margin-bottom: 16px">
             <div>
               <div class="label">Current balance</div>
               <div class="num">R 0</div>
@@ -386,16 +475,20 @@
           </div>
 
           <div class="section-title">
-            <h2>Due in the next two weeks</h2
-            ><button class="linklike" onclick="showView('bills')">View all →</button>
+            <h2>Due in the next two weeks</h2>
+            <button class="linklike" onclick="showView('bills')">
+              View all →
+            </button>
           </div>
           <div class="card">
             <div class="list" id="dashUpcoming"></div>
           </div>
 
           <div class="section-title">
-            <h2>Recent transactions</h2
-            ><button class="linklike" onclick="showView('transactions')">View all →</button>
+            <h2>Recent transactions</h2>
+            <button class="linklike" onclick="showView('transactions')">
+              View all →
+            </button>
           </div>
           <div class="card">
             <div class="list" id="dashRecent"></div>
@@ -406,38 +499,65 @@
         <section id="view-transactions" class="view">
           <div class="pagehead">
             <h1>Transactions</h1>
-            <p class="lede">Every rand in and out, categorised automatically.</p>
+            <p class="lede">
+              Every rand in and out, categorised automatically.
+            </p>
           </div>
           <div
-            style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;gap:12px;flex-wrap:wrap;"
+            style="
+              display: flex;
+              justify-content: space-between;
+              align-items: center;
+              margin-bottom: 10px;
+              gap: 12px;
+              flex-wrap: wrap;
+            "
           >
             <select
               id="txFilter"
-              style="border:1px solid var(--line);border-radius:10px;padding:8px 12px;font-size:13.5px;"
+              style="
+                border: 1px solid var(--line);
+                border-radius: 10px;
+                padding: 8px 12px;
+                font-size: 13.5px;
+              "
             ></select>
-            <button class="btn btn-primary" onclick="openTxModal()">Add transaction</button>
+            <button class="btn btn-primary" onclick="openTxModal()">
+              Add transaction
+            </button>
           </div>
           <div
-            style="display:flex;justify-content:flex-end;gap:10px;margin-bottom:14px;flex-wrap:wrap;"
+            style="
+              display: flex;
+              justify-content: flex-end;
+              gap: 10px;
+              margin-bottom: 14px;
+              flex-wrap: wrap;
+            "
           >
             <button
               class="btn btn-plain"
-              style="padding:6px 10px;"
+              style="padding: 6px 10px"
               onclick="downloadExcelTemplate()"
-              >Download Excel template</button
             >
+              Download Excel template
+            </button>
             <button
               class="btn btn-secondary"
-              style="padding:8px 14px;"
+              style="padding: 8px 14px"
               onclick="document.getElementById('excelImportInput').click()"
-              >Import from Excel</button
             >
+              Import from Excel
+            </button>
             <input
               type="file"
               id="excelImportInput"
               accept=".xlsx,.xls"
               hidden
-              onchange="handleExcelImport(this.files[0]); this.value='';"
+              onchange="
+                handleExcelImport(this.files[0]);
+                this.value = '';
+              "
             />
           </div>
           <div class="card">
@@ -449,46 +569,49 @@
         <section id="view-bills" class="view">
           <div class="pagehead">
             <h1>Bills &amp; income</h1>
-            <p class="lede"
-              >Recurring money out, recurring money in, and once-off income — kept separate, all
-              feeding your forecast.</p
-            >
+            <p class="lede">
+              Recurring money out, recurring money in, and once-off income —
+              kept separate, all feeding your forecast.
+            </p>
           </div>
 
           <div class="section-title">
-            <h2>Bills &amp; subscriptions</h2
-            ><button
+            <h2>Bills &amp; subscriptions</h2>
+            <button
               class="btn btn-secondary"
-              style="padding:8px 14px;"
-              onclick="openRecurringModal(null,'bill')"
-              >Add recurring item</button
+              style="padding: 8px 14px"
+              onclick="openRecurringModal(null, 'bill')"
             >
+              Add recurring item
+            </button>
           </div>
           <div class="card">
             <div class="list" id="billsList"></div>
           </div>
 
           <div class="section-title">
-            <h2>Recurring income</h2
-            ><button
+            <h2>Recurring income</h2>
+            <button
               class="btn btn-secondary"
-              style="padding:8px 14px;"
-              onclick="openRecurringModal(null,'income')"
-              >Add recurring income</button
+              style="padding: 8px 14px"
+              onclick="openRecurringModal(null, 'income')"
             >
+              Add recurring income
+            </button>
           </div>
           <div class="card">
             <div class="list" id="incomeList"></div>
           </div>
 
           <div class="section-title">
-            <h2>Once-off income</h2
-            ><button
+            <h2>Once-off income</h2>
+            <button
               class="btn btn-secondary"
-              style="padding:8px 14px;"
-              onclick="openTxModal(null,'income')"
-              >Add once-off income</button
+              style="padding: 8px 14px"
+              onclick="openTxModal(null, 'income')"
             >
+              Add once-off income
+            </button>
           </div>
           <div class="card">
             <div class="list" id="onceOffIncomeList"></div>
@@ -499,9 +622,9 @@
         <section id="view-budget" class="view">
           <div class="pagehead">
             <h1>Budget</h1>
-            <p class="lede"
-              >Set a monthly limit per category — planned vs. actual, updated live from your
-              transactions.
+            <p class="lede">
+              Set a monthly limit per category — planned vs. actual, updated
+              live from your transactions.
             </p>
           </div>
           <div class="card" id="budgetList"></div>
@@ -511,20 +634,31 @@
         <section id="view-forecast" class="view">
           <div class="pagehead">
             <h1>Cash-flow forecast</h1>
-            <p class="lede"
-              >Your projected balance for the next 45 days, based on upcoming bills and recent
-              spending.</p
-            >
+            <p class="lede">
+              Your projected balance for the next 45 days, based on upcoming
+              bills and recent spending.
+            </p>
           </div>
           <div class="card">
             <div id="forecastChart"></div>
             <div class="forecast-legend">
-              <span><i class="dot" style="background:var(--maroon)"></i> Bill / expense day</span>
-              <span><i class="dot" style="background:var(--good)"></i> Income day</span>
+              <span
+                ><i class="dot" style="background: var(--maroon)"></i> Bill /
+                expense day</span
+              >
+              <span
+                ><i class="dot" style="background: var(--good)"></i> Income
+                day</span
+              >
             </div>
             <p
               id="forecastNote"
-              style="margin-top:14px;color:var(--ink);font-size:14px;line-height:1.55;"
+              style="
+                margin-top: 14px;
+                color: var(--ink);
+                font-size: 14px;
+                line-height: 1.55;
+              "
             ></p>
           </div>
         </section>
@@ -533,15 +667,16 @@
         <section id="view-whatif" class="view">
           <div class="pagehead">
             <h1>What-if planning</h1>
-            <p class="lede"
-              >Thinking about a purchase? See how it lands on your projected balance.</p
-            >
+            <p class="lede">
+              Thinking about a purchase? See how it lands on your projected
+              balance.
+            </p>
           </div>
           <div class="card">
             <form id="whatifForm">
               <div class="field-row">
-                <div class="field"
-                  ><label for="whatifAmount">Purchase amount</label
+                <div class="field">
+                  <label for="whatifAmount">Purchase amount</label
                   ><input
                     id="whatifAmount"
                     type="number"
@@ -549,13 +684,16 @@
                     step="1"
                     placeholder="15000"
                     required
-                /></div>
-                <div class="field"
-                  ><label for="whatifDate">On or around</label
-                  ><input id="whatifDate" type="date" required
-                /></div>
+                  />
+                </div>
+                <div class="field">
+                  <label for="whatifDate">On or around</label
+                  ><input id="whatifDate" type="date" required />
+                </div>
               </div>
-              <button class="btn btn-primary" type="submit">Check affordability</button>
+              <button class="btn btn-primary" type="submit">
+                Check affordability
+              </button>
             </form>
             <div id="whatifResult"></div>
           </div>
@@ -565,27 +703,45 @@
         <section id="view-alerts" class="view">
           <div class="pagehead">
             <h1>Alerts</h1>
-            <p class="lede"
-              >Bills coming up, budgets running hot, and spending that looks out of pattern.</p
-            >
+            <p class="lede">
+              Bills coming up, budgets running hot, and spending that looks out
+              of pattern.
+            </p>
           </div>
 
-          <div class="card" style="margin-bottom:20px;">
-            <h3 style="font-size:15px;margin-bottom:8px;">Get notified</h3>
-            <p style="color:var(--ink-soft);font-size:13px;margin-bottom:14px;"
-              >Real pop-up notifications, the same way any phone app shows them — no email or SMS
-              needed. They work best once you've installed the app (see the sidebar), but also fire
-              while a browser tab is open.</p
+          <div class="card" style="margin-bottom: 20px">
+            <h3 style="font-size: 15px; margin-bottom: 8px">Get notified</h3>
+            <p
+              style="
+                color: var(--ink-soft);
+                font-size: 13px;
+                margin-bottom: 14px;
+              "
             >
-            <div style="display:flex;flex-wrap:wrap;gap:10px;align-items:center;">
+              Real pop-up notifications, the same way any phone app shows them —
+              no email or SMS needed. They work best once you've installed the
+              app (see the sidebar), but also fire while a browser tab is open.
+            </p>
+            <div
+              style="
+                display: flex;
+                flex-wrap: wrap;
+                gap: 10px;
+                align-items: center;
+              "
+            >
               <button
                 id="notifyBtn"
                 class="btn btn-secondary"
-                style="padding:8px 14px;"
+                style="padding: 8px 14px"
                 onclick="requestBrowserNotify()"
-                >Enable notifications</button
               >
-              <span id="notifyHint" style="font-size:12.5px;color:var(--ink-soft);"></span>
+                Enable notifications
+              </button>
+              <span
+                id="notifyHint"
+                style="font-size: 12.5px; color: var(--ink-soft)"
+              ></span>
             </div>
           </div>
 
@@ -609,32 +765,50 @@
                 data-type="expense"
                 class="active expense"
                 onclick="setTxType('expense')"
-                >Expense</button
               >
-              <button type="button" data-type="income" class="income" onclick="setTxType('income')"
-                >Income</button
+                Expense
+              </button>
+              <button
+                type="button"
+                data-type="income"
+                class="income"
+                onclick="setTxType('income')"
               >
+                Income
+              </button>
             </div>
           </div>
-          <div class="field"
-            ><label for="txDesc">Description</label
-            ><input id="txDesc" type="text" placeholder="e.g. Woolworths groceries" required
-          /></div>
-          <div class="field-row">
-            <div class="field"
-              ><label for="txAmount">Amount (R)</label
-              ><input id="txAmount" type="number" min="1" step="1" required
-            /></div>
-            <div class="field"
-              ><label for="txDate">Date</label><input id="txDate" type="date" required
-            /></div>
+          <div class="field">
+            <label for="txDesc">Description</label
+            ><input
+              id="txDesc"
+              type="text"
+              placeholder="e.g. Woolworths groceries"
+              required
+            />
           </div>
-          <div class="field"
-            ><label for="txCategory">Category</label
-            ><select id="txCategory" class="category-select"></select
-          ></div>
+          <div class="field-row">
+            <div class="field">
+              <label for="txAmount">Amount (R)</label
+              ><input id="txAmount" type="number" min="1" step="1" required />
+            </div>
+            <div class="field">
+              <label for="txDate">Date</label
+              ><input id="txDate" type="date" required />
+            </div>
+          </div>
+          <div class="field">
+            <label for="txCategory">Category</label
+            ><select id="txCategory" class="category-select"></select>
+          </div>
           <div class="modal-actions">
-            <button type="button" class="btn btn-plain" onclick="closeTxModal()">Cancel</button>
+            <button
+              type="button"
+              class="btn btn-plain"
+              onclick="closeTxModal()"
+            >
+              Cancel
+            </button>
             <button type="submit" class="btn btn-primary">Save</button>
           </div>
         </form>
@@ -642,37 +816,56 @@
     </div>
 
     <!-- Recurring modal -->
-    <div class="modal-backdrop" id="recModal" hidden data-kind="bill" data-freq="monthly">
+    <div
+      class="modal-backdrop"
+      id="recModal"
+      hidden
+      data-kind="bill"
+      data-freq="monthly"
+    >
       <div class="modal">
         <h3 id="recModalTitle">Add recurring item</h3>
         <form id="recForm">
           <div class="field">
             <label>Type</label>
             <div class="type-toggle" id="recKindToggle">
-              <button type="button" data-kind="bill" class="active" onclick="setRecKind('bill')"
-                >Bill</button
+              <button
+                type="button"
+                data-kind="bill"
+                class="active"
+                onclick="setRecKind('bill')"
               >
-              <button type="button" data-kind="subscription" onclick="setRecKind('subscription')"
-                >Subscription</button
+                Bill
+              </button>
+              <button
+                type="button"
+                data-kind="subscription"
+                onclick="setRecKind('subscription')"
               >
-              <button type="button" data-kind="income" onclick="setRecKind('income')"
-                >Income</button
+                Subscription
+              </button>
+              <button
+                type="button"
+                data-kind="income"
+                onclick="setRecKind('income')"
               >
+                Income
+              </button>
             </div>
           </div>
-          <div class="field"
-            ><label for="recName">Name</label
-            ><input id="recName" type="text" placeholder="e.g. Rent" required
-          /></div>
+          <div class="field">
+            <label for="recName">Name</label
+            ><input id="recName" type="text" placeholder="e.g. Rent" required />
+          </div>
           <div class="field-row">
-            <div class="field"
-              ><label for="recAmount">Amount (R)</label
-              ><input id="recAmount" type="number" min="1" step="1" required
-            /></div>
-            <div class="field"
-              ><label for="recCategory">Category</label
-              ><select id="recCategory" class="category-select"></select
-            ></div>
+            <div class="field">
+              <label for="recAmount">Amount (R)</label
+              ><input id="recAmount" type="number" min="1" step="1" required />
+            </div>
+            <div class="field">
+              <label for="recCategory">Category</label
+              ><select id="recCategory" class="category-select"></select>
+            </div>
           </div>
           <div class="field">
             <label>Frequency</label>
@@ -682,20 +875,32 @@
                 data-freq="monthly"
                 class="active"
                 onclick="setRecFrequency('monthly')"
-                >Monthly</button
               >
-              <button type="button" data-freq="annual" onclick="setRecFrequency('annual')"
-                >Annual</button
+                Monthly
+              </button>
+              <button
+                type="button"
+                data-freq="annual"
+                onclick="setRecFrequency('annual')"
               >
+                Annual
+              </button>
             </div>
           </div>
           <div class="field-row">
-            <div class="field"
-              ><label for="recDay">Day of month</label
-              ><input id="recDay" type="number" min="1" max="31" value="1" required
-            /></div>
-            <div class="field" id="recMonthField" hidden
-              ><label for="recMonth">Month</label>
+            <div class="field">
+              <label for="recDay">Day of month</label
+              ><input
+                id="recDay"
+                type="number"
+                min="1"
+                max="31"
+                value="1"
+                required
+              />
+            </div>
+            <div class="field" id="recMonthField" hidden>
+              <label for="recMonth">Month</label>
               <select id="recMonth">
                 <option value="1">January</option>
                 <option value="2">February</option>
@@ -713,9 +918,13 @@
             </div>
           </div>
           <div class="modal-actions">
-            <button type="button" class="btn btn-plain" onclick="closeRecurringModal()"
-              >Cancel</button
+            <button
+              type="button"
+              class="btn btn-plain"
+              onclick="closeRecurringModal()"
             >
+              Cancel
+            </button>
             <button type="submit" class="btn btn-primary">Save</button>
           </div>
         </form>
@@ -726,19 +935,25 @@
     <div class="modal-backdrop" id="balanceModal" hidden>
       <div class="modal">
         <h3>Set starting balance</h3>
-        <p style="color:var(--ink-soft);font-size:13.5px;margin-bottom:14px;"
-          >Your current account balance right now — everything else is calculated from your
-          transactions from this point on.</p
+        <p
+          style="color: var(--ink-soft); font-size: 13.5px; margin-bottom: 14px"
         >
+          Your current account balance right now — everything else is calculated
+          from your transactions from this point on.
+        </p>
         <form id="balanceForm">
-          <div class="field"
-            ><label for="balanceInput">Balance (R)</label
-            ><input id="balanceInput" type="number" step="1" required
-          /></div>
+          <div class="field">
+            <label for="balanceInput">Balance (R)</label
+            ><input id="balanceInput" type="number" step="1" required />
+          </div>
           <div class="modal-actions">
-            <button type="button" class="btn btn-plain" onclick="closeBalanceModal()"
-              >Cancel</button
+            <button
+              type="button"
+              class="btn btn-plain"
+              onclick="closeBalanceModal()"
             >
+              Cancel
+            </button>
             <button type="submit" class="btn btn-primary">Save</button>
           </div>
         </form>
@@ -749,29 +964,49 @@
     <div class="modal-backdrop" id="importPreviewModal" hidden>
       <div class="modal">
         <h3>Import from Excel</h3>
-        <div id="importPreviewSummary" style="font-size:14px;line-height:1.6;"></div>
+        <div
+          id="importPreviewSummary"
+          style="font-size: 14px; line-height: 1.6"
+        ></div>
         <div
           id="importPreviewErrors"
-          style="max-height:140px;overflow-y:auto;font-size:12.5px;color:var(--warn);margin-top:10px;"
+          style="
+            max-height: 140px;
+            overflow-y: auto;
+            font-size: 12.5px;
+            color: var(--warn);
+            margin-top: 10px;
+          "
         ></div>
         <div class="modal-actions">
-          <button type="button" class="btn btn-plain" onclick="closeImportPreview()">Cancel</button>
+          <button
+            type="button"
+            class="btn btn-plain"
+            onclick="closeImportPreview()"
+          >
+            Cancel
+          </button>
           <button
             type="button"
             class="btn btn-primary"
             id="confirmImportBtn"
             onclick="confirmExcelImport()"
-            >Import</button
           >
+            Import
+          </button>
         </div>
       </div>
     </div>
 
     <div id="toast" class="toast" hidden>
       <span id="toastMsg"></span>
-      <button id="toastUndoBtn" class="linklike" style="color:#fff;text-decoration:underline;"
-        >Undo</button
+      <button
+        id="toastUndoBtn"
+        class="linklike"
+        style="color: #fff; text-decoration: underline"
       >
+        Undo
+      </button>
     </div>
 
     <!-- The app script loads after the view markup because it binds to these elements. -->
