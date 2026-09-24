@@ -192,7 +192,7 @@ nav.mainnav .icon {
 
 /* Mobile install hint chip */
 #installBtn[hidden] {
-  display: none;
+  display: block;
 }
 
 .main {
