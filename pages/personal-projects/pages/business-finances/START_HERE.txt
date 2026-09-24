@@ -1,0 +1,13 @@
+INTEGRATED ACCOUNTING PLATFORM v0.1.4
+
+1. Extract the complete ZIP to a new folder.
+2. Open index.html in Google Chrome or Microsoft Edge.
+3. Confirm that the sidebar displays v0.1.4.
+4. Open Administration, select Add company, and enter the legal company name.
+5. The company code is generated automatically. Select Create and Prepare Company.
+6. To edit or delete records, open the relevant register and use Edit or Delete on that row.
+7. To clear a company's records or delete the company, open Administration > Companies.
+
+The training guide, blank import template and completed sample workbook are in the training-pack folder.
+
+Do not run the platform from inside the ZIP. Extract the ZIP first.

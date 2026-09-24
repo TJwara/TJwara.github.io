@@ -1,0 +1,22 @@
+{
+  "name": "integrated-accounting-platform",
+  "version": "0.1.4",
+  "private": true,
+  "description": "Integrated Cost and Managerial Accounting and double-entry Financial Accounting platform.",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build && node scripts/copy-static.cjs",
+    "test": "node tests/run-tests.js",
+    "training": "node scripts/generate-training.cjs"
+  },
+  "devDependencies": {
+    "docx": "^9.5.1",
+    "exceljs": "^4.4.0",
+    "fake-indexeddb": "^6.2.2",
+    "jsdom": "^26.1.0",
+    "jspdf": "^3.0.2",
+    "jspdf-autotable": "^5.0.2",
+    "papaparse": "^5.5.3",
+    "vite": "^7.1.1"
+  }
+}
