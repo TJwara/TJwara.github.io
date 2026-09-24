@@ -1833,15 +1833,15 @@ body.modal-open {
 }
 
 .be-line span {
-  background: linear-gradient(90deg, #5e0a0a, #a34b4b)
+  background: linear-gradient(90deg, #000000, #050505)
 }
 
 .dual-card article:first-child {
-  background: linear-gradient(145deg, #7b1515, #5e0a0a)
+  background: linear-gradient(145deg, #1d1b1b, #292525)
 }
 
 .dual-card article:last-child {
-  background: linear-gradient(145deg, #5e0a0a, #310404)
+  background: linear-gradient(145deg, #252424, #1f1d1d)
 }
 
 .company-card,
