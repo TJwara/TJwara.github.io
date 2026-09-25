@@ -3,7 +3,7 @@
 // Bump CACHE_NAME whenever you change any cached file, so the new version replaces the old.
 // Check APP_SHELL paths against the deployed directory: cache.addAll rejects a missing file.
 const CACHE_PREFIX = "coursemaccon-finance-";
-const CACHE_NAME = `${CACHE_PREFIX}v5`;
+const CACHE_NAME = `${CACHE_PREFIX}v6`;
 const APP_SHELL = [
   "./personal-finances.html",
   "./styles.css",

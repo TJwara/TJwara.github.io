@@ -224,28 +224,6 @@
         </div>
 
         <nav class="mainnav">
-          <!-- Keep the mobile install action first so it remains visible in the scrolling bottom bar. -->
-          <button
-            id="mobileInstallBtn"
-            class="mobile-install"
-            type="button"
-            onclick="triggerInstall()"
-          >
-            <span class="icon"
-              ><svg
-                width="17"
-                height="17"
-                viewBox="0 0 16 16"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="1.6"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              >
-                <path d="M8 2v8m-3-3 3 3 3-3M2 11v2.5h12V11" /></svg
-            ></span>
-            <span class="navlabel">Install app</span>
-          </button>
           <button data-view="dashboard" class="active">
             <span class="icon"
               ><svg
@@ -377,14 +355,6 @@
         </nav>
 
         <div class="sidebar-foot">
-          <button
-            id="installBtn"
-            class="ghost-btn"
-            hidden
-            onclick="triggerInstall()"
-          >
-            Install app
-          </button>
           <button class="ghost-btn" onclick="openBalanceModal()">
             Set starting balance
           </button>

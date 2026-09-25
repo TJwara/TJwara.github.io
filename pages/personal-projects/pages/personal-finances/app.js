@@ -1101,7 +1101,7 @@ function renderNotifySettings() {
     if (hint)
       hint.textContent = installed
         ? "Installed — you'll get these reliably."
-        : "Tip: install the app (sidebar) for more reliable delivery.";
+        : "Notifications work best while this page is open.";
   } else if (Notification.permission === "denied") {
     btn.textContent = "Blocked — enable in browser settings";
     btn.disabled = true;
@@ -1612,37 +1612,6 @@ function checkAndNotify() {
     });
   }
   saveState();
-}
-
-/* ---------------- install prompt ---------------- */
-
-let deferredInstallPrompt = null;
-window.addEventListener("beforeinstallprompt", (e) => {
-  e.preventDefault();
-  deferredInstallPrompt = e;
-  document.getElementById("installBtn").hidden = false;
-});
-window.addEventListener("appinstalled", () => {
-  deferredInstallPrompt = null;
-  document.getElementById("installBtn").hidden = true;
-});
-function triggerInstall() {
-  if (
-    window.matchMedia?.("(display-mode: standalone)").matches ||
-    navigator.standalone
-  ) {
-    showToast("This app is already installed.");
-    return;
-  }
-  if (!deferredInstallPrompt) {
-    showToast(
-      "Use your browser menu or Share option to add this page to your home screen.",
-    );
-    return;
-  }
-  deferredInstallPrompt.prompt();
-  deferredInstallPrompt = null;
-  document.getElementById("installBtn").hidden = true;
 }
 
 /* Undo toast: the final UI element after the dialogs in the HTML. */

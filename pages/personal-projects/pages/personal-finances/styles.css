@@ -169,15 +169,6 @@ nav.mainnav button.active {
   font-weight: 600;
 }
 
-/* The separate install action appears only in the mobile navigation. */
-nav.mainnav button.mobile-install {
-  display: none;
-}
-
-nav.mainnav button.mobile-install[hidden] {
-  display: none;
-}
-
 nav.mainnav .icon {
   width: 18px;
   text-align: center;
@@ -205,11 +196,6 @@ nav.mainnav .icon {
 
 .ghost-btn:hover {
   border-color: var(--maroon);
-}
-
-/* The desktop install action is hidden until the browser offers a prompt. */
-#installBtn[hidden] {
-  display: none;
 }
 
 .main {
@@ -801,16 +787,6 @@ nav.mainnav .icon {
     padding: 6px 10px;
     border-radius: 12px;
     font-size: 10.5px;
-  }
-
-  nav.mainnav button.mobile-install {
-    display: flex;
-    position: sticky;
-    left: 0;
-    z-index: 1;
-    border: 1px solid var(--light-6);
-    background: var(--dark-4);
-    color: var(--white);
   }
 
   nav.mainnav .icon {
